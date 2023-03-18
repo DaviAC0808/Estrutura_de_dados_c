@@ -1,80 +1,126 @@
-typedef struct Chamada
-{
-  int custo;
-  int tempo_de_espera;
-} Chamada;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-  int num_chamadas = 10;
-  Chamada **chamadas;
-  chamadas = (Chamada **)malloc(num_chamadas * sizeof(Chamada *));
+typedef struct {
+    int numero;
+    char nome[50];
+    int votos;
+} Candidato;
 
-  // Preenche o vetor de chamadas com valores aleatórios
-  for (int i = 0; i < num_chamadas; i++)
-  {
-    chamadas[i] = (Chamada *)malloc(sizeof(Chamada));
-    chamadas[i]->custo = rand() % 1000; // custo aleatório entre 0 e 999
-    chamadas[i]->tempo_de_espera = i;   // tempo de espera igual à ordem de chegada
-  }
+typedef struct {
+    int id;
+    char nome[50];
+    int voto; // Armazena o número do candidato votado. 0 para branco e -1 para nulo.
+} Eleitor;
 
-  // Ordena o vetor de chamadas de acordo com o custo
-  void ordenaChamadas(Chamada * chamadas, int nChamadas)
-  {
-    int i, j;
-    Chamada chave;
+int main() {
+    int numCandidatos = 3;
+    int numEleitores = 10;
 
-    for (i = 1; i < nChamadas; i++)
-    {
-      chave = chamadas[i];
-      j = i - 1;
+    // Alocação dinâmica dos vetores de candidatos e eleitores
+    Candidato* candidatos = (Candidato*) malloc(numCandidatos * sizeof(Candidato));
+    Eleitor* eleitores = (Eleitor*) malloc(numEleitores * sizeof(Eleitor));
 
-      while (j >= 0 && chamadas[j].custo > chave.custo)
-      {
-        chamadas[j + 1] = chamadas[j];
-        j--;
-      }
-
-      chamadas[j + 1] = chave;
+    // Cadastro dos candidatos
+    printf("Cadastro de candidatos:\n");
+    for (int i = 0; i < numCandidatos; i++) {
+        printf("Candidato %d:\n", i+1);
+        candidatos[i].numero = i+1;
+        printf("Digite o nome do candidato: ");
+        scanf("%s", candidatos[i].nome);
+        candidatos[i].votos = 0;
     }
-  }
 
-  // Realiza o atendimento das chamadas
-  for (int i = 0; i < num_chamadas; i++)
-  {
-    // Atende a chamada
-    printf("Atendendo chamada com custo %d e tempo de espera %d\n", chamadas[i]->custo, chamadas[i]->tempo_de_espera);
+    // Cadastro dos eleitores
+    printf("\nCadastro de eleitores:\n");
+    for (int i = 0; i < numEleitores; i++) {
+        printf("Eleitor %d:\n", i+1);
+        eleitores[i].id = i+1;
+        printf("Digite o nome do eleitor: ");
+        scanf("%s", eleitores[i].nome);
+        eleitores[i].voto = -1;
+    }
 
-    // Libera a memória alocada para a chamada
-    free(chamadas[i]);
-  }
+    // Votação
+    int opcao = -1;
+    while (opcao != 0) {
+        printf("\nVotação:\n");
+        printf("1 - Votar em um candidato\n");
+        printf("2 - Votar em branco\n");
+        printf("0 - Encerrar votação\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &opcao);
 
-  // Libera a memória alocada para o vetor de chamadas
-  free(chamadas);
+        if (opcao == 1) {
+            // Voto em um candidato
+            int numCand;
+            printf("\nCandidatos:\n");
+            for (int i = 0; i < numCandidatos; i++) {
+                printf("%d - %s\n", candidatos[i].numero, candidatos[i].nome);
+            }
+            printf("Digite o número do candidato em que deseja votar: ");
+            scanf("%d", &numCand);
 
-  return 0;
+            int encontrado = 0;
+            for (int i = 0; i < numCandidatos; i++) {
+                if (candidatos[i].numero == numCand) {
+                    candidatos[i].votos++;
+                    encontrado = 1;
+                    break;
+                }
+            }
+            if (encontrado == 0) {
+                printf("Candidato não encontrado.\n");
+            } else {
+                printf("Voto registrado.\n");
+            }
+
+            // Registra o voto do eleitor
+            printf("Digite o número do eleitor que está votando: ");
+            int numEleitor;
+            scanf("%d", &numEleitor);
+            if (numEleitor < 1 || numEleitor > numEleitores) {
+                printf("Eleitor não encontrado.\n");
+            }
+            printf("Voto em branco registrado.\n");
+            break;
+        }
+    else if (opcao != 0) {
+        printf("Opção inválida.\n");
+    }
 }
 
-int compara_chamadas(const void *a, const void *b)
-{
-  Chamada *c1 = *(Chamada **)a;
-  Chamada *c2 = *(Chamada **)b;
-  if (c1->custo < c2->custo)
-  {
-    printf("%d \n",*c1);
-    printf("%d \n",*c2);
-    return -1;
-  }
-  else if (c1->custo > c2->custo)
-  {
-    printf("%d \n",*c1);
-    printf("%d \n",*c2);
-    return 1;
-  }
-  else
-  {
-    printf("%d \n",*c1);
-    printf("%d \n",*c2);
-    return 0;
-  }
+// Contabilização dos votos
+int votosBrancos = 0;
+int votosNulos = 0;
+int maiorVotos = -1;
+Candidato vencedor;
+
+for (int i = 0; i < numCandidatos; i++) {
+    if (candidatos[i].votos > maiorVotos) {
+        maiorVotos = candidatos[i].votos;
+        vencedor = candidatos[i];
+    }
+}
+
+for (int i = 0; i < numEleitores; i++) {
+    if (eleitores[i].voto == 0) {
+        votosBrancos++;
+    } else if (eleitores[i].voto == -1) {
+        votosNulos++;
+    }
+}
+
+// Resultados da votação
+printf("\nResultados:\n");
+printf("Votos em branco: %d\n", votosBrancos);
+printf("Votos nulos: %d\n", votosNulos);
+printf("Candidato vencedor: %s com %d votos\n", vencedor.nome, vencedor.votos);
+
+// Liberação da memória alocada dinamicamente
+free(candidatos);
+free(eleitores);
+
+return 0;
 }
