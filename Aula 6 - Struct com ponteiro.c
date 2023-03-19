@@ -24,7 +24,7 @@ typedef struct
 // Função para cadastrar um eleitor
 void cadastrar_eleitor(Eleitor *eleitores, int *num_eleitores)
 {
-    if (*num_eleitores < 10)
+    if (*num_eleitores == 10)
     {
         printf("Limite de eleitores cadastrados nao atingido!\n");
         return;
