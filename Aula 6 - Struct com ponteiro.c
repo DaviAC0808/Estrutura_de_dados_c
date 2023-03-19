@@ -24,9 +24,9 @@ typedef struct
 // Função para cadastrar um eleitor
 void cadastrar_eleitor(Eleitor *eleitores, int *num_eleitores)
 {
-    if (*num_eleitores == 10)
+    if (*num_eleitores < 10)
     {
-        printf("Limite de eleitores cadastrados atingido!\n");
+        printf("Limite de eleitores cadastrados nao atingido!\n");
         return;
     }
 
@@ -49,7 +49,7 @@ void cadastrar_eleitor(Eleitor *eleitores, int *num_eleitores)
 // Função para cadastrar um candidato
 void cadastrar_candidato(Candidato *candidatos, int *num_candidatos)
 {
-    if (*num_candidatos == 3)
+    if (*num_candidatos == 10)
     {
         printf("Limite de candidatos cadastrados atingido!\n");
         return;
@@ -68,12 +68,12 @@ void cadastrar_candidato(Candidato *candidatos, int *num_candidatos)
 // Função para realizar o voto de um eleitor
 void votar(Eleitor *eleitores, int num_eleitores, Candidato *candidatos, int num_candidatos)
 {
-    int i, j, voto;
+    int i, voto;
 
     // Verifica se há eleitores cadastrados
-    if (num_eleitores == 0)
+    if (num_eleitores > 3)
     {
-        printf("Nao ha eleitores cadastrados!\n");
+        printf("Nao ha eleitores suficientes cadastrados!\n");
         return;
     }
 
