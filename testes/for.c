@@ -1,14 +1,20 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
-{
-    int var, i;
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%d Digite um valor entre 0 e 10: ");
-        scanf("%d",i ,&var);
+int main() {
+    int var;
+
+    // Repete até que o usuário digite um número válido
+    for (;;) {
+        printf("Digite um numero de 0 a 10: ");
+        scanf("%d", &var);
+
+        // Verifica se o número está dentro do intervalo permitido
+        if (var >= 0 && var <= 10) {
+            break; // Sai do loop
+        }
+
+        printf("Namero invalido! Tente novamente.\n\n");
     }
 
-    printf("\nO valor %i foi inserido com sucesso.\n", &var);
+    printf("\nO numero %d foi inserido\n", var);
 }
