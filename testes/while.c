@@ -20,6 +20,7 @@ int main()
     printf("\n\n--------------------\n\n");
 
     // inicio de 'do while'
+    //testado ao menos 1x
     do
     {
         if (var < 0 || var > 10)
