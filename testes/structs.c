@@ -10,7 +10,7 @@ struct produto
 
 int main()
 {
-    setlocale(LC_ALL, "Portugues");
+    setlocale(LC_ALL, "Portuguese_Brazil");
 
     struct produto p;
     int n, erro;
