@@ -11,7 +11,7 @@ int main()
 {
 
     struct produto p;
-    int n;
+    int n, erro;
 
     printf("1_ Cadarstrar produto.\n");
     printf("2_ Ler produto.\n");
@@ -24,30 +24,25 @@ int main()
         scanf("%d", &n);
     }
 
-    while (n == 1)
+    if (n == 1)
     {
         printf("\nDigite o codigo do produto: ");
         scanf("%d", &p.cod);
 
         printf("\nDigite o valor do produto: ");
         scanf(" %f", &p.valor);
-
-        if (n == 0)
-        {
-            break;
-        }
-        
     }
 
     if (n == 2 && p.cod == 0)
     {
         printf("O programa parou inesperadamente.");
+
+        erro = 1;
     }
-    
-    while (n == 2)
+
+    if (n == 2 && erro != 1)
     {
         printf("%d", p.cod);
         printf("R$ %.2f", p.valor);
     }
-    
 }
