@@ -10,9 +10,9 @@ struct produto
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portugues");
 
-    struct produto p = {0, 0.0};
+    struct produto p;
     int n, erro;
 
     printf("1_ Cadarstrar produto.\n");
@@ -42,15 +42,24 @@ int main()
             scanf("%d", &n);
         }
 
-        if (n == 2)
+        if (n == 2 && p.cod != 0)
         {
-            printf("%d\n", p.cod);
-            printf("R$%.2f\n", p.valor);
+            printf("\nCódigo do produto: %d\n", p.cod);
+            printf("Valor: R$%.2f\n", p.valor);
 
             printf("\n\n1_ Cadarstrar produto.\n");
             printf("2_ Ler produto.\n");
             printf("0_ Sair.\n\n");
             scanf("%d", &n);
+
+        }else{
+            printf("escaneie o produto e tente novamente.");
+
+            printf("\n\n1_ Cadarstrar produto.\n");
+            printf("2_ Ler produto.\n");
+            printf("0_ Sair.\n\n");
+            scanf("%d", &n);
+
         }
     }
 
