@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 struct produto
 {
@@ -9,43 +10,49 @@ struct produto
 
 int main()
 {
+    setlocale(LC_ALL, "Portuguese");
 
-    struct produto p;
+    struct produto p = {0, 0.0};
     int n, erro;
 
     printf("1_ Cadarstrar produto.\n");
     printf("2_ Ler produto.\n");
     printf("0_ Sair.\n\n");
-    scanf("%d ", &n);
+    scanf("%d", &n);
 
     while (n != 0)
     {
-        while (n < 0 || n > 2)
+        if (n < 0 || n > 2)
         {
-            printf("Valor invalido, digite o valor novamente.\n\n");
+            printf("Valor inválido, digite o valor novamente.\n\n");
             scanf("%d", &n);
         }
 
         if (n == 1)
         {
-            printf("\nDigite o codigo do produto: ");
+            printf("\nDigite o código do produto: ");
             scanf("%d", &p.cod);
 
             printf("\nDigite o valor do produto: ");
-            scanf(" %f", &p.valor);
+            scanf("%f", &p.valor);
+
+            printf("\n\n1_ Cadarstrar produto.\n");
+            printf("2_ Ler produto.\n");
+            printf("0_ Sair.\n\n");
+            scanf("%d", &n);
         }
 
-        if (n == 2 && p.cod == 0)
+        if (n == 2)
         {
-            printf("O programa parou inesperadamente.");
+            printf("%d\n", p.cod);
+            printf("R$%.2f\n", p.valor);
 
-            erro = 1;
-        }
-
-        if (n == 2 && erro != 1)
-        {
-            printf("%d", p.cod);
-            printf("R$ %.2f", p.valor);
+            printf("\n\n1_ Cadarstrar produto.\n");
+            printf("2_ Ler produto.\n");
+            printf("0_ Sair.\n\n");
+            scanf("%d", &n);
         }
     }
+
+    printf("Saindo...");
 }
