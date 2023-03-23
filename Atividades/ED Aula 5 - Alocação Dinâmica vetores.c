@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 typedef struct {
     int numero;
@@ -15,6 +16,9 @@ typedef struct {
 } Eleitor;
 
 int main() {
+
+    setlocale(LC_ALL, "Portuguese_Brazil");
+
     int numCandidatos = 3;
     int numEleitores = 10;
 
