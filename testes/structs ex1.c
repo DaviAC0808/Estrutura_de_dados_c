@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 struct Funcionario {
     char nome[50];
@@ -14,6 +15,9 @@ struct Funcionario {
 };
 
 int main() {
+
+    setlocale(LC_ALL,"Portuguese_Brazil");
+
     struct Funcionario *funcionario;
     funcionario = (struct Funcionario *)malloc(sizeof(struct Funcionario));
 
