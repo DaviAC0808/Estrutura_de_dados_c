@@ -11,8 +11,8 @@ int main()
     ptr1 = &valor;
     ptr2 = &ptr1;
 
-    printf("Endereço de ptr1 = %x\n", &ptr1);
-    printf("Endereço de ptr2 = %x\n", &ptr2);
+    printf("EndereÃ§o de ptr1 = %x\n", &ptr1);
+    printf("EnderÃ§o de ptr2 = %x\n", &ptr2);
     printf("Valor do ptr1 = %i\n", *ptr1);
     printf("Valor do ptr2 = %i\n", *ptr2);
 }

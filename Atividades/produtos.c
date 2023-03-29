@@ -44,7 +44,7 @@ int main()
 
         if (codigo_existente)
         {
-            printf("Erro: o codigo %d ja foi cadastrado!\n", codigo);
+            printf("Erro: o codigo %d já foi cadastrado!\n", codigo);
             continue;
         }
 
