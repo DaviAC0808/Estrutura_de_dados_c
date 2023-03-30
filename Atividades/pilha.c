@@ -26,7 +26,7 @@ bool pilhaVazia(Pilha p)
     return p.topo == -1;
 }
 
-// FunÃ§Ã£o para verificar se a pilha está cheia
+// Função para verificar se a pilha está cheia
 bool pilhaCheia(Pilha p)
 {
     return p.topo == TAMANHO_PILHA - 1;
