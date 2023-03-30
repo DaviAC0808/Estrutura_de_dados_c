@@ -44,7 +44,7 @@ void inserirValor(Pilha *p, int valor)
     p->itens[p->topo] = valor;
 }
 
-// FunÃ§Ã£o para remover um valor da pilha
+// Função para remover um valor da pilha
 void removerValor(Pilha *p)
 {
     if (pilhaVazia(*p))
