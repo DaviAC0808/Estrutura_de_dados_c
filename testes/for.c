@@ -13,7 +13,7 @@ int main() {
             break; // Sai do loop
         }
 
-        printf("Namero invalido! Tente novamente.\n\n");
+        printf("\nNumero invalido! Tente novamente.\n\n");
     }
 
     printf("\nO numero %d foi inserido\n", var);
