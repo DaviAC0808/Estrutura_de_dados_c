@@ -3,8 +3,8 @@
 
 int main()
 {
-    int ;
+    int;
 
     printf("\n\n");
-    scanf("%",);
+    scanf("%", );
 }

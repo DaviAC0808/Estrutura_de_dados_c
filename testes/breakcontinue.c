@@ -3,8 +3,14 @@
 
 int main()
 {
-    int ;
+    int i;
 
-    printf("\n\n");
-    scanf("%",);
+    for (int i = 0; i <= 10; i++)
+    {
+        printf("%d ", i);
+        if (i == 5)
+        {
+            break;
+        }
+    }
 }
