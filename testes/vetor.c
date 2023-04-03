@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 int main()
 {
+    setlocale(LC_ALL,"Portuguese_Brazil");
 
-    int i, n;
+    int n;
 
     // vet={1,2,3,4,5}; erro
     float med;
 
-    printf("Quantas posiÃ§Ãµes voce quer? ");
+    printf("Quantas posições voce quer? ");
     scanf("%d", &n);
 
     // Vetor
