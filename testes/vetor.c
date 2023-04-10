@@ -30,5 +30,5 @@ int main()
     }
 
     med = med /n;   
-    printf("\n%f\n", med);
+    printf("\nA média dos valores é %f!\n", med);
 }
