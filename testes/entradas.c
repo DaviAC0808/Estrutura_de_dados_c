@@ -3,21 +3,23 @@
 
 int main()
 {
-    printf("\nDigite um dado: \n");
-    scanf("%d", i);
+    char s[10];
+
+    printf("\nDigite um dado: (scanf)\n");
+    scanf("%c", s);
     fflush(stdin);
 
-    printf("\nDigite um dado: \n");
-    gets(n);
-    fflush(stdin);
-
-    printf("\nDigite um dado: \n");
-    puts(m);
+    printf("\nDigite um dado: (gets)\n");
+    gets(s);
     fflush(stdin);
     
-    printf("\nDigite um dado: \n");
-    fgets(n);
+    printf("\nDigite um dado: (fgets)\n");
+    fgets(s, 10, stdin);
     fflush(stdin);
     
+    printf("\nDigite um dado: (puts)\n");
+    puts(s);
+    puts("");
+    fflush(stdin);
 
 }
