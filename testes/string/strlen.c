@@ -14,7 +14,9 @@ int main()
 
     printf("Digite um texto:\n");
     gets(s);
-    i = strlen(s);
+
+    i = strlen(s);//Conta quantos caracteres
+    
     printf("\n%d caracteres\n", i);
 
     printf("\nImpressão de posição:\n");
@@ -22,7 +24,7 @@ int main()
     for (i = 0; i < strlen(s); i++)
     {
         printf("%c",s[i]);
-    }
+    }//ou puts(s)
     printf("\n");
 
     return 0;
