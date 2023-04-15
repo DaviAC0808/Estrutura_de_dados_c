@@ -24,13 +24,13 @@ int main()
     {
         if (n < 0 || n > 2)
         {
-            printf("Valor inv√°lido, digite o valor novamente.\n\n");
+            printf("Valor inv·lido, digite o valor novamente.\n\n");
             scanf("%d", &n);
         }
 
         if (n == 1)
         {
-            printf("\nDigite o c√≥digo do produto: ");
+            printf("\nDigite o cÛdigo do produto: ");
             scanf("%d", &p.cod);
 
             printf("\nDigite o valor do produto: ");
@@ -44,7 +44,7 @@ int main()
 
         if (n == 2 && p.cod != 0)
         {
-            printf("\nC√≥digo do produto: %d\n", p.cod);
+            printf("\nCÛdigo do produto: %d\n", p.cod);
             printf("Valor: R$%.2f\n", p.valor);
 
             printf("\n\n1_ Cadarstrar produto.\n");
