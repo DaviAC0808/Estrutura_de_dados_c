@@ -27,7 +27,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
 
-    empregado str;
+    empregado str;//renomeia a truct
     int v_emp;
     int conf_data;
 
@@ -45,16 +45,17 @@ int main()
         printf("\n Data de nascimento [DDMMAA]: ");
         scanf("%2d%2d%4d", &str.nascimento.dia, &str.nascimento.mes, &str.nascimento.ano);
 
-        printf("\nData inserida: %02d/%02d/%04d\n as datas conferem? [1=sim/0=não] ", str.nascimento.dia, str.nascimento.mes, str.nascimento.ano);
-        scanf("%i", conf_data);
+        printf("\nData inserida: %02d/%02d/%04d\n", str.nascimento.dia, str.nascimento.mes, str.nascimento.ano);
+        printf("As datas conferem? [1=sim/0=não]: ");
+        scanf("%d", &conf_data);
 
-        if (conf_data = 0)
-        {
-            printf("not okay");
-        }
-        else
+        if (conf_data == 1)
         {
             printf("okay");
+        }else{
+            printf("not okay");
+            v_emp++;
         }
+        
     }
 }
