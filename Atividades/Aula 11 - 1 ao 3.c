@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-typedef struct Node //Cria o valor
+typedef struct Node // Cria o valor
 {
     int value;
     struct Node *next;
@@ -30,7 +30,7 @@ void printQueue(Queue *q)
     Node *current = q->front;
     while (current != NULL)
     {
-        printf("%d ", current->value);
+        printf(" %d |", current->value);
         current = current->next;
     }
     printf("\n");
@@ -47,13 +47,17 @@ int dequeue(Queue *q)
     Node *temp = q->front;
     int value = temp->value;
 
-    if (q->front == q->rear) {
+    if (q->front == q->rear)
+    {
         // Se a fila tiver apenas um elemento
         q->front = NULL;
         q->rear = NULL;
-    } else {
+    }
+    else
+    {
         // Percorre a fila até chegar ao penúltimo elemento
-        while (temp->next != q->rear) {
+        while (temp->next != q->rear)
+        {
             temp = temp->next;
         }
         // Remove o último elemento
@@ -66,7 +70,6 @@ int dequeue(Queue *q)
 
     return value;
 }
-
 
 int findAndRemove(Queue *q, int value)
 {
@@ -109,8 +112,7 @@ int findAndRemove(Queue *q, int value)
     return 1;
 }
 
-
-//enfileirar
+// enfileirar
 void enqueue(Queue *q, int value)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
@@ -126,6 +128,41 @@ void enqueue(Queue *q, int value)
     }
     q->rear = newNode;
 }
+
+void insertAtPosition(Queue *q, int position, int value)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->value = value;
+
+    if (position == 1) {
+        newNode->next = q->front;
+        q->front = newNode;
+        if (q->rear == NULL) {
+            q->rear = newNode;
+        }
+        return;
+    }
+
+    Node *previous = NULL;
+    Node *current = q->front;
+    int i = 1;
+
+    while (current != NULL && i < position) {
+        previous = current;
+        current = current->next;
+        i++;
+    }
+
+    if (i < position) {
+        newNode->next = NULL;
+        q->rear->next = newNode;
+        q->rear = newNode;
+    } else {
+        newNode->next = current;
+        previous->next = newNode;
+    }
+}
+
 
 int main()
 {
@@ -149,39 +186,42 @@ int main()
 
         switch (menu)
         {
-            case 1:
-                printf("Digite um valor a ser enfileirado: ");
-                scanf("%d", &value);
-                enqueue(&q, value);
-                printQueue(&q);
-                system("cls");
-                break;
-            case 2:
-                printf("Removendo o ultimo elemento da lista\n");
-                dequeue(&q);
-                printQueue(&q);
-                system("cls");
-                break;
-            case 3:
-                printf("Digite um valor para encontrar e remover da lista: ");
-                scanf("%d", &value);
-                findAndRemove(&q, value);
-                printQueue(&q);
-                system("cls");
-                break;
-            case 4:
-                printf("Digite a posição em que deseja inserir um elemento: ");
-                scanf("%d", &n);
-                printf("Digite um valor a ser enfileirado: ");
-                scanf("%d", &value);
-                printf("Função ainda não implementada.\n");
-                system("cls");
-                break;
-            case 5:
-                break;
-            default:
-                printf("Opção inválida!\n");
-                break;
+        case 1:
+            printf("Digite um valor a ser enfileirado: ");
+            scanf("%d", &value);
+            enqueue(&q, value);
+            printQueue(&q);
+            system("cls");
+            break;
+        case 2:
+            printf("Removendo o ultimo elemento da lista\n");
+            dequeue(&q);
+            printQueue(&q);
+            system("cls");
+            break;
+        case 3:
+            printf("Digite um valor para encontrar e remover da lista: ");
+            scanf("%d", &value);
+            findAndRemove(&q, value);
+            printQueue(&q);
+            system("cls");
+            break;
+        case 4:
+            printf("Digite a posição em que deseja inserir um elemento: ");
+            scanf("%d", &n);
+            printf("Digite um valor a ser inserido: ");
+            scanf("%d", &value);
+            insertAtPosition(&q, n, value);
+            printQueue(&q);
+            system("cls");
+            break;
+
+        case 5:
+            break;
+        default:
+            printf("Opção inválida!\n");
+            system("cls");
+            break;
         }
     } while (menu != 5);
 
