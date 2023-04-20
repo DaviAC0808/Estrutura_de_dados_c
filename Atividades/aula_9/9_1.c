@@ -126,6 +126,7 @@ int main()
         printf("1 - Inserir valor na fila\n");
         printf("2 - Desenfileirar valor da fila e inserir na pilha\n");
         printf("3 - Imprimir fila e pilha e sair\n");
+        printQueue(&q);
         scanf("%d", &opcao);
         switch (opcao)
         {
@@ -135,6 +136,7 @@ int main()
             enqueue(&q, valor);
             printf("Valor %d inserido na fila.\n", valor);
             printQueue(&q); // Adicione esta linha para imprimir a fila ap�s a inser��o
+            system("cls");
             break;
         case 2:
             valor = dequeue(&q);
@@ -144,15 +146,17 @@ int main()
                 printf("Valor %d desenfileirado da fila e inserido na pilha.\n", valor);
             }
             printQueue(&q); // Adicione esta linha para imprimir a fila ap�s a desenfileira��o
+            system("cls");
             break;
         case 3:
+            system("cls");
             // queueToStack(&q, &s);
             printf("Valores desenfileirados da fila e inseridos na pilha.\n");
             printQueue(&q);
             printStack(&s);
             return 0;
         default:
-            printf("Opcao invalida. Tente novamente.\n");
+            printf("\n\nOpcao invalida. Tente novamente.\n");
         }
     }
 }
