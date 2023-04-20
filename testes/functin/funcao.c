@@ -23,6 +23,7 @@ int main()
     scanf("%f", &y);
 
     m = maior(x, y);//Chama a função maior
+    
     printf("Maior: %.2f\n", m);
 
 }
