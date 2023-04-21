@@ -19,7 +19,7 @@ int main() {
     setlocale(LC_ALL,"Portuguese_Brazil");
 
     struct Funcionario *funcionario;
-    funcionario = (struct Funcionario *)malloc(sizeof(struct Funcionario));
+    funcionario = (struct Funcionario *)malloc(sizeof(struct Funcionario));//aloca dinâmicamente memória pro ponteiro funcionário
 
     printf("Digite o nome completo do funcionario: ");
     fgets(funcionario->nome, 50, stdin);
@@ -56,7 +56,7 @@ int main() {
     printf("Cargo: %s\n", funcionario->cargo);
     printf("Salario: R$%.2f\n", funcionario->salario);
 
-    free(funcionario);
+    free(funcionario);//desaloca memória pro ponteiro funcionário
 
     return 0;
 }
