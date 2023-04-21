@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
+
 void imprime1(int v[], int n)
 {
     int i;
@@ -36,6 +37,8 @@ int main()
 
     puts("\nTerceiro imprime: ");
     imprime3(vet);
+
+    return 0;
 }
 
 void imprime2(int *v, int n)
