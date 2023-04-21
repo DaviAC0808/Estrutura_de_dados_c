@@ -16,7 +16,7 @@ int main()
         system("cls");
         printf("1 - Calcular o perímetro do Triângulo.\n");
         printf("2 - Calcular o perímetro do Retângulo.\n");
-        printf("3 - Calcular o perímetro do Circulo.\n");
+        printf("3 - Calcular o perímetro do Círculo.\n");
         printf("4 - Calcular o área do Triângulo.\n");
         printf("5 - Calcular o área do Triângulo.\n");
         printf("6 - Calcular o área do Triângulo.\n");
@@ -26,55 +26,63 @@ int main()
         switch (n)
         {
         case 1:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite os lados do triângulo: [x,y,z] ");
             scanf("%d,%d,%d", &a, &b, &c);
             fflush(stdin);
-            printf("Perímetro do Triângulo: %.2f\n", CalPerimetroTri(a, b, c));
+            printf("\nO perímetro do Triângulo é: %.2f\n", CalPerimetroTri(a, b, c));
             system("pause");
             break;
 
         case 2:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite os lados do retângulo: [x,y]");
             scanf("%d,%d", &a, &b);
             fflush(stdin);
-            printf("O perímetro do retângulo é: %.2f", CalPerimetroRet(a, b));
+            printf("\nO perímetro do retângulo é: %.2f\n", CalPerimetroRet(a, b));
             system("pause");
             break;
 
         case 3:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite o raio do Círculo: [x]");
             scanf("%d", &r);
             fflush(stdin);
-            printf("O perímetro do círculo é: %.2f", CalPerimetroCir(r));
+            printf("\nO perímetro do círculo é: %.2f\n", CalPerimetroCir(r));
             system("pause");
             break;
 
         case 4:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite os lados do triângulo: [x,y] ");
             scanf("%d,%d", &b, &a);
             fflush(stdin);
-            printf("A área do triângulo é: %.2f", CalAreaTri(b, a));
+            printf("\nA área do triângulo é: %.2f\n", CalAreaTri(b, a));
             system("pause");
             break;
 
         case 5:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite os lados do retângulo: [x,y]");
             scanf("%d,%d", &b, &a);
             fflush(stdin);
-            printf("A área do retângulo é: %.2f", CalAreaRet(b, a));
+            printf("\nA área do retângulo é: %.2f\n", CalAreaRet(b, a));
             system("pause");
             break;
 
         case 6:
-            printf("Digite os lados do triângulo: ");
+            printf("\nDigite o raio do círculo: [x]");
             scanf("%d", &r);
             fflush(stdin);
-            printf("A área do circulo é: %.2f", CalAreaCir(r));
+            printf("\nA área do círculo é: %.2f\n", CalAreaCir(r));
             system("pause");
             break;
 
         default:
-            printf("Valor incorreto, tente novamente.");
+            if (n == 7)
+            {
+                printf("Saindo...");
+            }
+            else
+            {
+                printf("\nValor incorreto, tente novamente.\n");
+                system("pause");
+            }
         }
     } while (n != 7);
 
