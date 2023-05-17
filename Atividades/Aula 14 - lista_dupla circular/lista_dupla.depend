@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1620125286 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\12 - aula 12 - lista duplamente encadeada\lista dupla engenharia 2021\lista_dupla\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1620126047 d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\12 - aula 12 - lista duplamente encadeada\lista dupla engenharia 2021\lista_dupla\lista.h
+
+1620126208 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\12 - aula 12 - lista duplamente encadeada\lista dupla engenharia 2021\lista_dupla\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624490797 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624492302 d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla\lista.h
+
+1624492302 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624900219 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624881994 d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia\lista.h
+
+1624900292 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624901466 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia - copia\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624881994 d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia - copia\lista.h
+
+1624900219 source:d:\1 - iftm\3 - iftm 2021\1º semestre\1- estrutura de dados\18 - avaliação p2\lista_dupla - copia - copia\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1667335468 source:g:\outros computadores\meu laptop\4 - iftm 2022\1 - estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624881994 g:\outros computadores\meu laptop\4 - iftm 2022\1 - estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\lista.h
+
+1624901597 source:g:\outros computadores\meu laptop\4 - iftm 2022\1 - estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624901597 source:e:\iftm - 2023 - 1\estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1624881994 e:\iftm - 2023 - 1\estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\lista.h
+
+1683845721 source:e:\iftm - 2023 - 1\estrutura de dados\13 - aula 13.1 - lista duplamente encadeada circular\lista_dupla circular\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
