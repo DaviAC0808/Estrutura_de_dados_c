@@ -20,6 +20,7 @@ struct aluno
 
 int main()
 {
+    struct aluno aluno;
     setlocale(LC_ALL, "Portuguese_Brazil");
     int n;
 
@@ -28,10 +29,9 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        printf("Endereço:");
+        printf("Endereço: ");
         fflush(stdin);
         gets(aluno.ende.num);
+        printf("\nNumero: %d\n", aluno.ende.num);
     }
-    printf("\nNumero: %d\n", aluno.ende.num);
-
 }
