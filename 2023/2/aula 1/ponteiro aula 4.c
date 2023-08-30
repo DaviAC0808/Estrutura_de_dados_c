@@ -2,26 +2,30 @@
 #include <stdlib.h>
 #include <locale.h>
 
-void add(int *x, int *y)
+int add(int *x, int *y, int result)
 {
 
     *x = 40;
     *y = 80;
 
-    return &x, &y;
+    result = *x + *y;
+
+    return result;
 }
 
 int main()
 {
-    int *x, *y;
     setlocale(LC_ALL, "Portuguese_Brazil");
     int *p = malloc(sizeof(int));
+    int *x = malloc(sizeof(int));
+    int *y = malloc(sizeof(int));
+    int result;
 
-    *p = &x; // ponteiro p rescebe o end de x
+    result = add(x, y, result);
+    *p = &result; // ponteiro p rescebe o end de result
 
-    printf("\n%d", &x);
-    printf("\n%d", &y);
-
-    // printf("\n\n");
-    // scanf("%", );
+    printf("\n%d", *x);
+    printf("\n%d", *y);
+    printf("\n%d", *p);
+    printf("\n%d", result);
 }
