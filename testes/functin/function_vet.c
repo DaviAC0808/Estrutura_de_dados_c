@@ -3,7 +3,7 @@
 #include <locale.h>
 
 
-void imprime1(int v[], int n)
+void imprime1(int v[], int n)  //Jeito 1
 {
     int i;
     for (i = 0; i < n; i++)
@@ -12,10 +12,10 @@ void imprime1(int v[], int n)
     }
 }
 
-void imprime2(int *v, int n);//protótipo de função
+void imprime2(int *v, int n);//protótipo de função (Jeito 2)
 
 
-void imprime3(int v[5])
+void imprime3(int v[5])       //Jeito 3
 {
     int i;
     for (i = 0; i < 5; i++)
@@ -41,7 +41,7 @@ int main()
     return 0;
 }
 
-void imprime2(int *v, int n)
+void imprime2(int *v, int n)    //Jeito 2
 {
     int i;
     for (i = 0; i < n; i++)
