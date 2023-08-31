@@ -3,7 +3,7 @@
 #include <string.h>
 #include <locale.h>
 
-struct Funcionario {
+typedef struct Funcionario {
     char nome[50];
     int idade;
     char sexo;
@@ -12,14 +12,13 @@ struct Funcionario {
     int codigo_setor;
     char cargo[30];
     float salario;
-};
+}funcionario;
 
 int main() {
 
     setlocale(LC_ALL,"Portuguese_Brazil");
 
-    struct Funcionario *funcionario;
-    funcionario = (struct Funcionario *)malloc(sizeof(struct Funcionario));//aloca dinâmicamente memória pro ponteiro funcionário
+    funcionario *funcionario = malloc(sizeof(struct Funcionario));//aloca dinâmicamente memória pro ponteiro funcionário
 
     printf("Digite o nome completo do funcionario: ");
     fgets(funcionario->nome, 50, stdin);
