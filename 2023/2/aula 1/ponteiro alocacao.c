@@ -21,7 +21,7 @@ int main()
 
     printf("\nValor de p: %d\n", *p);
     printf("\nEnd de onde p aponta: %d\n", p);
-    printf("\nEnd de *p: %i\n", &p);
+    printf("\nEnd de *p: %d\n", &p);
 
     free (p);//libera espaço de memoria
 

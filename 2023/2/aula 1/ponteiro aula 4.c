@@ -28,4 +28,9 @@ int main()
     printf("\n%d", *y);
     printf("\n%d", *p);
     printf("\n%d", result);
+
+    free(x);
+    free(y);
+    free(p);
+
 }
