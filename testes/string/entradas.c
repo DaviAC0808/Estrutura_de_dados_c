@@ -5,7 +5,7 @@ int main()
 {
     char s[10];
 
-    printf("\nDigite um dado: (scanf)\n");
+    printf("\nDigite um dado: (scanf)\n"); //SCANF
     scanf("%s", s);
     fflush(stdin);
 
@@ -13,7 +13,7 @@ int main()
     puts("");
     fflush(stdin);
 
-    printf("\nDigite um dado: (gets)\n");
+    printf("\nDigite um dado: (gets)\n"); //GETS
     gets(s);
     fflush(stdin);
 
@@ -21,7 +21,7 @@ int main()
     puts("");
     fflush(stdin);
     
-    printf("\nDigite um dado: (fgets)\n");
+    printf("\nDigite um dado: (fgets)\n"); //FGETS
     fgets(s, 10, stdin);
     fflush(stdin);
     
