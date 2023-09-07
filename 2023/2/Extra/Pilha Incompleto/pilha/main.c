@@ -47,9 +47,9 @@ void desempilha(pilha *p)
   int x;
   Tpilha *aux = p->topo;
   p->topo = aux->ant;
-  
+
   aux->ant = NULL;
-  x= aux -> valor; //seguranca
+  x = aux->valor; // seguranca
 
   free(aux);
   return x;
