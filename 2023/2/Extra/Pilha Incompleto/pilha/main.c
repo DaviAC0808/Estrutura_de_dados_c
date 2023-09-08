@@ -10,7 +10,7 @@ typedef struct Tpilha
 
 typedef struct pilha
 {
-  Tpilha *topo;
+    Tpilha *topo;
 } pilha;
 
 void criate_pilha(pilha *p) // generica pra todas as pilhas do cod
