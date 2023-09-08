@@ -57,14 +57,11 @@ int main()
 
     do
     {
-
         printf("\n 1_Empilhar");
         printf("\n 2_Desempilhar");
         printf("\n 3_Mostrar a pilha");
         printf("\n 0_Sair");
-
         printf("\n\n");
-
         fflush(stdin);
         scanf("%d", &op);
 
@@ -79,9 +76,9 @@ int main()
             printf("Empilhando:\n");
 
             int vlr;
-            printf("digite um valor a ser empilhado");
+            printf("digite um valor a ser empilhado: \n");
             scanf("%d", &vlr);
-            empilhar(p1,vlr);
+            empilhar(p1, vlr);
 
             break;
         case 2:

@@ -6,7 +6,7 @@
 typedef struct Funcionario {
     char nome[50];
     int idade;
-    char sexo;
+    int sexo;
     char cpf[12];
     char data_nascimento[11];
     int codigo_setor;
@@ -18,7 +18,7 @@ int main() {
 
     setlocale(LC_ALL,"Portuguese_Brazil");
 
-    funcionario *funcionario = malloc(sizeof(struct Funcionario));//aloca dinâmicamente memória pro ponteiro funcionário
+    funcionario *funcionario = malloc(sizeof(funcionario));//aloca dinâmicamente memória pro ponteiro funcionário
 
     printf("Digite o nome completo do funcionario: ");
     fgets(funcionario->nome, 50, stdin);
@@ -27,8 +27,8 @@ int main() {
     printf("Digite a idade do funcionario: ");
     scanf("%d", &funcionario->idade);
 
-    printf("Digite o sexo do funcionario (M/F): ");
-    scanf(" %c", &funcionario->sexo);
+    printf("Digite o sexo do funcionario: \n1_Masculino\n2_Feminino\n");
+    scanf("%d", &funcionario->sexo);
 
     printf("Digite o CPF do funcionario: ");
     scanf(" %[^\n]", funcionario->cpf);
@@ -48,7 +48,18 @@ int main() {
     printf("\nDados do funcionario cadastrado:\n");
     printf("Nome: %s\n", funcionario->nome);
     printf("Idade: %d\n", funcionario->idade);
-    printf("Sexo: %c\n", funcionario->sexo);
+    switch (funcionario->sexo)
+    {
+    case 1:
+        printf("Sexo: Masculino\n");
+        break;
+    case 2:
+        printf("Sexo: Feminino\n");
+        break;
+    default:
+        printf("Sexo: Opção inválida\n");
+        break;
+    }
     printf("CPF: %s\n", funcionario->cpf);
     printf("Data de nascimento: %s\n", funcionario->data_nascimento);
     printf("Codigo do setor: %d\n", funcionario->codigo_setor);
