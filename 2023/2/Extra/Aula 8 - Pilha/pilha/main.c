@@ -2,79 +2,74 @@
 #include <stdlib.h>
 #include "pilha.h"
 
-void menu(){
+void menu()
+{
 
-  //pilhas
-  pilha *p1=malloc(sizeof(pilha));
+  // pilhas
+  pilha *p1 = malloc(sizeof(pilha));
   create_pilha(p1);
 
+  int op; // opcao recursiva
 
+  do
+  {
+    system("cls");
+    printf("\n Pilha: \n");
+    mostrar(p1);
 
+    printf("\n\n");
+    printf("1 - Empilhar \n");
+    printf("2 - Desempilhar \n");
+    printf("3 - Sair \n ");
 
+    printf("\n\n Informe a opcao :>_");
+    scanf("%d", &op);
 
- int op;  //opcao recursiva
+    switch (op)
+    {
 
-  do{
-         system("cls");
-         printf("\n Pilha: \n");
-         mostrar(p1);
+    case 1:
+    { // empilhar
 
-          printf("\n\n");
-          printf("1 - Empilhar \n");
-          printf("2 - Desempilhar \n");
-          printf("3 - Sair \n ");
+      int valor;
+      printf("\n Informe um valor\n");
+      scanf("%d", &valor);
 
-          printf("\n\n Informe a opcao :>_");
-          scanf("%d",&op);
+      // empilha(2a,30)
+      empilha(p1, valor);
 
-        switch(op){
+      break;
+    }
 
-         case 1:{ //empilhar
+    case 2:
+    { // desempilhando
 
-            int valor;
-            printf("\n Informe um valor\n");
-            scanf("%d",&valor);
+      if (pilha_vazia(p1) == 1)
+      {
+        printf("pilha vazia\n");
+        printf("nao e possivel remover \n");
+        getchar();
+      }
+      else
+      {
+        desempilha(p1);
+      }
 
-          //empilha(2a,30)
-            empilha(p1,valor);
+      break;
+    }
 
+    case 3:
+      op = 3;
+    }
 
-            break;
-         }
-
-         case 2:{//desempilhando
-
-           if(pilha_vazia(p1)==1){
-              printf("pilha vazia\n");
-              printf("nao e possivel remover \n");
-              getch();
-
-            }else{
-               desempilha(p1);
-            }
-
-            break;
-         }
-
-
-
-        case 3:
-          op=3;
-        }
-
-  }while(op != 3);
+  } while (op != 3);
 }
 
 int main()
 {
 
-    menu();
+  menu();
 
-    printf("\n\n");
-    return 0;
+  printf("\n\n");
+  return 0;
 }
-
-
-
-
-
