@@ -65,16 +65,10 @@ void menu(){
   }while(op != 3);
 }
 
-
 int main()
 {
 
     menu();
-
-
-
-
-
 
     printf("\n\n");
     return 0;

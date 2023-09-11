@@ -38,7 +38,7 @@ void empilhar(pilha *p, int vlr){
 }
 
 void desempilhar(pilha *p){
-    
+    //cod
 }
 
 int main()
@@ -47,5 +47,5 @@ int main()
     int;
 
     printf("\n\n");
-    scanf("%", );
+    //scanf("%", );
 }
