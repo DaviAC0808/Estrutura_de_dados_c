@@ -6,53 +6,44 @@ typedef struct no
 {
     int Vlr;
     struct no *ant;
-} no;
+}no;
 
 typedef struct Pilha
 {
     no *topo;
-} pilha;
+}pilha;
 
-void inicializa(pilha *p)
-{
-    p->topo == NULL;
+void validar (pilha *p){
+    p->topo = NULL;
 }
 
-int verifica(pilha *p)
-{
-    if (p->topo == NULL)
-    {
+int verificar(pilha *p){
+    if (p->topo == NULL){
         printf("\nA pilha está vazia!");
         return 0;
-    }
-    else
-    {
+    }else{
         return 1;
     }
 }
 
-void empilha(int vlr, pilha *p){
-    no *novo=malloc(sizeof(no));
+void empilhar(pilha *p, int vlr){
+    no *novo = malloc(sizeof(no));
 
-    if (novo)
-    {
-        novo->Vlr = vlr;
-        novo->ant = p->topo;
-        p->topo = novo; 
-        
-        novo = NULL;
-        free(novo);
-    }else
-    {
-        printf("\nA alocação dinâmica falhou!")
-    }
-    
+    novo->Vlr = vlr;
+    novo->ant = p->topo;
+    p->topo = novo;
+
+    novo = NULL;
+    free(novo);
+}
+
+void desempilhar(pilha *p){
     
 }
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
+    setlocale(LC_ALL,"Portuguese_Brazil");
     int;
 
     printf("\n\n");

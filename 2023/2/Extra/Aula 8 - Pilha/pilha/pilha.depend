@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1680045307 source:e:\iftm - 2023 - 1\8 - aula 8 - pilha dinâmica\pilha dinamica turma 1 - copia\pilha\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1680045300 e:\iftm - 2023 - 1\8 - aula 8 - pilha dinâmica\pilha dinamica turma 1 - copia\pilha\pilha.h
+
+1680088280 source:e:\iftm - 2023 - 1\8 - aula 8 - pilha dinâmica\pilha dinamica turma 1 - copia\pilha\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+

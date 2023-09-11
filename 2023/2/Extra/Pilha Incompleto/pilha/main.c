@@ -13,6 +13,11 @@ typedef struct pilha
   Tpilha *topo;
 } pilha;
 
+/*1 - criar_pilha
+  2 - verificar
+  3 - empilhar
+  4 - desempilhar*/
+
 void criate_pilha(pilha *p) // generica pra todas as pilhas do cod
 {
   p->topo = NULL;
