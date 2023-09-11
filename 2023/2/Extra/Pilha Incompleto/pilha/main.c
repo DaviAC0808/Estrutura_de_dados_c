@@ -3,14 +3,14 @@
 
 typedef struct Tpilha
 {
-  int valor;
+  int Valor;
   struct Tpilha *ant;
   //...
 } Tpilha;
 
 typedef struct pilha
 {
-    Tpilha *topo;
+  Tpilha *topo;
 } pilha;
 
 void criate_pilha(pilha *p) // generica pra todas as pilhas do cod
@@ -34,9 +34,9 @@ void empilhar(pilha *p, int valor) // Empilhando
 {
   Tpilha *novo = malloc(sizeof(Tpilha));
 
-  novo->valor = valor; // Reorganizando ponteiros
+  novo->Valor = valor; // Reorganizando ponteiros
   novo->ant = p->topo;
-  p->topo = novo;
+  p->topo = novo; //?
 
   novo = NULL;
   free(novo);
@@ -49,7 +49,7 @@ void desempilha(pilha *p)
   p->topo = aux->ant;
 
   aux->ant = NULL;
-  x = aux->valor; // seguranca
+  x = aux->Valor; // seguranca
 
   free(aux);
   return x;

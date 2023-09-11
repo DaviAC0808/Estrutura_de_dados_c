@@ -40,6 +40,9 @@ void empilhar(pilha *p, int vlr)
         novo->Vlr = vlr;
         novo->ant = p->topo;
         p->topo = novo;
+
+        novo=NULL;
+        free(novo);
     }
     else
     {
