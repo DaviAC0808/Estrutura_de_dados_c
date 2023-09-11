@@ -75,10 +75,10 @@ void mostrar(pilha *p)
 
 void menu()
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
+
     // pilhas
     pilha *p1 = malloc(sizeof(pilha));
-    criar(p1);
+    create_pilha(p1);
 
     int op; // opcao recursiva
 
@@ -89,27 +89,27 @@ void menu()
         mostrar(p1);
 
         printf("\n\n");
-        printf("0 - Sair \n");
         printf("1 - Empilhar \n");
         printf("2 - Desempilhar \n");
-        printf("3 - Exercicio 1 \n ");
+        printf("3 - Sair \n ");
 
         printf("\n\n Informe a opcao :>_");
         scanf("%d", &op);
 
         switch (op)
         {
-            case 0:
+        case 0:
             op = 0;
-            case 1:
-            { // empilhar
+
+        case 1:
+        { // empilhar
 
             int valor;
             printf("\n Informe um valor\n");
             scanf("%d", &valor);
 
             // empilha(2a,30)
-            empilhar(p1, valor);
+            empilha(p1, valor);
 
             break;
         }
@@ -117,7 +117,7 @@ void menu()
         case 2:
         { // desempilhando
 
-            if (verificar(p1) == 1)
+            if (pilha_vazia(p1) == 1)
             {
                 printf("pilha vazia\n");
                 printf("nao e possivel remover \n");
@@ -125,23 +125,25 @@ void menu()
             }
             else
             {
-                desempilhar(p1);
+                desempilha(p1);
             }
 
             break;
         }
 
         case 3:
-        { // manipula a pilha
+        {//manipular
         }
         }
-        while (op != 0)
-            ;
-    }
+
+    } while (op != 0);
 }
 
 int main()
 {
+
     menu();
+
+    printf("\n\n");
     return 0;
 }
