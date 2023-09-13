@@ -44,13 +44,22 @@ void empilhar(pilha *p, int vlr)
     free(novo);
 }
 
-void desempilhar(pilha *p)
+int desempilhar(pilha *p, int x)
 {
     no *aux;
+    x = p->topo->Vlr;
     aux = p->topo;
     p->topo = aux->ant;
     aux->ant = NULL;
     free(aux);
+    return x;
+}
+
+void inverter(pilha *pa, pilha *pb, int x)
+{
+    desempilhar(pa, x);
+    printf("\nDesempilhado: %d\n", &x);
+    system("pause");
 }
 
 void mostrar(pilha *p)
@@ -75,12 +84,16 @@ void mostrar(pilha *p)
 
 void menu()
 {
+    setlocale(LC_ALL, "Portuguese_Brazil");
 
     // pilhas
     pilha *p1 = malloc(sizeof(pilha));
-    create_pilha(p1);
+    criar(p1);
 
-    int op; // opcao recursiva
+    pilha *p2 = malloc(sizeof(pilha));
+    criar(p2);
+
+    int op, x; // opcao recursiva
 
     do
     {
@@ -89,9 +102,10 @@ void menu()
         mostrar(p1);
 
         printf("\n\n");
+        printf("0 - Sair \n");
         printf("1 - Empilhar \n");
         printf("2 - Desempilhar \n");
-        printf("3 - Sair \n ");
+        printf("3 - Manipular \n ");
 
         printf("\n\n Informe a opcao :>_");
         scanf("%d", &op);
@@ -100,6 +114,7 @@ void menu()
         {
         case 0:
             op = 0;
+            break;
 
         case 1:
         { // empilhar
@@ -109,7 +124,7 @@ void menu()
             scanf("%d", &valor);
 
             // empilha(2a,30)
-            empilha(p1, valor);
+            empilhar(p1, valor);
 
             break;
         }
@@ -117,7 +132,7 @@ void menu()
         case 2:
         { // desempilhando
 
-            if (pilha_vazia(p1) == 1)
+            if (verificar(p1) == 1)
             {
                 printf("pilha vazia\n");
                 printf("nao e possivel remover \n");
@@ -125,14 +140,16 @@ void menu()
             }
             else
             {
-                desempilha(p1);
+                desempilhar(p1, x);
             }
 
             break;
         }
 
         case 3:
-        {//manipular
+        { // manipular
+
+            inverter(p1, p2, x);
         }
         }
 
