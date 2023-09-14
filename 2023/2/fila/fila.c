@@ -12,19 +12,34 @@ typedef struct fila
 {
     struct fila *inicio;
     struct fila *fim;
-}fila;
+} fila;
 
-void criar(fila *f){
-    f->inicio = NULL
-    f->fim
-} 
+void criar(fila *f)
+{
+    f->inicio = NULL;
+    f->fim = NULL;
+}
+
+int verificar(fila *f)
+{
+    if (f->inicio == NULL && f->fim == NULL)
+    {
+        printf("\nFila vazia!\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int ;
+    int;
 
     printf("\n\n");
     // scanf("%", );
-
 }
