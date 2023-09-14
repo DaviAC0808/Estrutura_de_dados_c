@@ -33,7 +33,41 @@ int verificar(fila *f)
     }
 }
 
+void insere(fila *f, int vlr)
+{
 
+}
+
+int remove(fila *f)
+{
+    int x;
+    no *aux = malloc(sizeof(no));
+
+    aux = f->inicio;
+    f->inicio = aux->prox; // ou f->inicio = f->inicio->prox
+    aux->prox = NULL;
+
+    if (f->inicio = NULL)
+    {
+        f->fim = NULL;
+    }
+
+    x = aux->Vlr;
+    free(aux);
+    return x;
+}
+
+int mostrar(fila *f){
+    
+    // no *aux = malloc(sizeof(no));
+    // f->inicio = aux;
+
+    // while (aux != NULL)
+    // {
+    //     printf("%d", f->inicio)
+    // }
+    
+}
 
 int main()
 {
