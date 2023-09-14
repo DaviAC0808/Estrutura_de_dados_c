@@ -14,12 +14,15 @@ typedef struct fila
     struct fila *fim;
 }fila;
 
-void criar() 
+void criar(fila *f){
+    f->inicio = NULL
+    f->fim
+} 
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int x;
+    int ;
 
     printf("\n\n");
     // scanf("%", );
