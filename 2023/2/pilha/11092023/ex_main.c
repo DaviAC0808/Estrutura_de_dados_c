@@ -57,6 +57,10 @@ int desempilhar(pilha *p, int x)
 
 void inverter(pilha *pa, pilha *pb, int x)
 {
+    /*pa - pilha a ser esvaziada
+      pb - pilah aux
+      pc - pilha return*/
+
     desempilhar(pa, x);
     printf("\nDesempilhado: %d\n", &x);
     system("pause");
