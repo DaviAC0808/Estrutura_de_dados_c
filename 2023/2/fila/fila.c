@@ -10,8 +10,8 @@ typedef struct no
 
 typedef struct fila
 {
-    struct fila *inicio;
-    struct fila *fim;
+    no *inicio;
+    no *fim;
 } fila;
 
 void criar(fila *f)
@@ -22,23 +22,36 @@ void criar(fila *f)
 
 int verificar(fila *f)
 {
-    if (f->inicio == NULL && f->fim == NULL)
+    if (f->inicio == NULL)
     {
         printf("\nFila vazia!\n");
-        return 0;
+        return 1;
     }
     else
     {
-        return 1;
+        return 0;
     }
 }
 
-void insere(fila *f, int vlr)
+void *insere(fila *f, int vlr)
 {
-    
+    no *novo = malloc(sizeof(no));
+    novo->Vlr = vlr;
+    novo->prox = NULL;
+
+    if (verificar(f)== 1){//inserindo 1º elemento
+        f->inicio = NULL;
+        f->fim = NULL;
+    }   else
+    {
+        f->fim->prox = novo;
+        f->fim = novo;
+    }
+    novo = NULL;
+    free(novo);
 }
 
-int remove(fila *f)
+int remover(fila *f)
 {
     int x;
     no *aux = malloc(sizeof(no));
@@ -47,7 +60,7 @@ int remove(fila *f)
     f->inicio = aux->prox; // ou f->inicio = f->inicio->prox
     aux->prox = NULL;
 
-    if (f->inicio = NULL)
+    if (f->inicio == NULL)
     {
         f->fim = NULL;
     }
@@ -59,20 +72,52 @@ int remove(fila *f)
 
 int mostrar(fila *f)
 {
+    no *aux = malloc(sizeof(no));
+    aux = f->inicio;
 
-    // no *aux = malloc(sizeof(no));
-    // f->inicio = aux;
-
-    // while (aux != NULL)
-    // {
-    //     printf("%d", f->inicio)
-    // }
+    while (aux != NULL)
+    {
+        printf("| %d", aux->Vlr);
+        aux = aux->prox;
+    }
 }
 
 int main()
 {
+    no *f1 = malloc(sizeof(no));
+    criar(f1); 
+
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int;
+    int x, op;
+
+    do
+    {
+        system("cls");
+        printf("\n========= Enfileirando Valores =========\n");
+        printf("\n0_ Sair");
+        printf("\n1_ Empilhar");
+        printf("\n2_ Desempillhar");
+        printf("\n3_ Mostrar");
+        printf("\n\n");
+        scanf("%d", &op);
+
+        switch (op)
+        {
+        case 0:
+            printf("Saindo...");
+            break;
+        case 1:
+            printf("Digite o valor a ser empilhado: ");
+            scanf("%d", &f1);
+            break;
+        
+        default:
+            printf("Digite um valor válidp!");
+            break;
+        }
+
+    } while (op != 0);
+    
 
     printf("\n\n");
     // scanf("%", );
