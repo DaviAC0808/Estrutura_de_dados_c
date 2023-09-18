@@ -35,7 +35,7 @@ int verificar(fila *f)
 
 void insere(fila *f, int vlr)
 {
-
+    
 }
 
 int remove(fila *f)
@@ -57,8 +57,9 @@ int remove(fila *f)
     return x;
 }
 
-int mostrar(fila *f){
-    
+int mostrar(fila *f)
+{
+
     // no *aux = malloc(sizeof(no));
     // f->inicio = aux;
 
@@ -66,7 +67,6 @@ int mostrar(fila *f){
     // {
     //     printf("%d", f->inicio)
     // }
-    
 }
 
 int main()
