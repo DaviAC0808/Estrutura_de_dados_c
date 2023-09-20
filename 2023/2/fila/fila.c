@@ -24,8 +24,7 @@ int verificar(fila *f)
 {
     if (f->inicio == NULL)
     {
-        printf("\nFila vazia!\n");
-        return 1;
+        return 1; // fila vazia
     }
     else
     {
@@ -41,8 +40,8 @@ void *insere(fila *f, int vlr)
 
     if (verificar(f) == 1)
     { // inserindo 1º elemento
-        f->inicio = NULL;
-        f->fim = NULL;
+        f->inicio = novo;
+        f->fim = novo;
     }
     else
     {
@@ -92,16 +91,14 @@ int main()
     setlocale(LC_ALL, "Portuguese_Brazil");
     int ins, op;
 
-    system("cls");
     do
     {
-
+        system("cls");
         mostrar(f1);
         printf("\n========= Enfileirando Valores =========\n");
         printf("\n0_ Sair");
         printf("\n1_ Empilhar");
         printf("\n2_ Desempillhar");
-        printf("\n3_ Mostrar");
         printf("\n\n");
         scanf("%d", &op);
 
@@ -118,7 +115,15 @@ int main()
 
             break;
         case 2:
-            remover(f1);
+            if (verificar(f1) == 1)
+            {
+                printf("\nLista Vazia!\n");
+                system("pause");
+            }
+            else
+            {
+                remover(f1);
+            }
             break;
         default:
             printf("\nDigite um valor válido!\n");
@@ -129,5 +134,4 @@ int main()
     } while (op != 0);
 
     printf("\n\n");
-    // scanf("%", );
 }
