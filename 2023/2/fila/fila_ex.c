@@ -42,19 +42,89 @@ int verificar(fila *f)
 }
 
 void inserir(fila *f, int vlr)
-{ //inicialza o novo
+{ // inicialza o novo
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;
     novo->prox = NULL;
 
-    
+    if (verificar(f) == 1)
+    {
+        f->inicio = novo;
+        f->fim = novo;
+    }
+    else
+    {
+        f->fim->prox = novo;
+        f->fim = novo;
+    }
 
+    novo = NULL;
+    free(novo);
+}
+
+int remover(fila *f)
+{
+    int x;
+    no *aux = malloc(sizeof(no));
+
+    aux = f->inicio;
+    f->inicio = aux->prox;
+    aux->prox = NULL;
+
+    if (f->inicio == NULL)
+    {
+        f->fim = NULL;
+    }
+
+    x = aux->Vlr;
+    free(aux);
+    return x;
+}
+
+void mostrar(fila *f){
+
+    no *aux = malloc(sizeof(no));
+    aux->Vlr = f->inicio->Vlr; 
+
+    while (aux != NULL)
+    {
+        printf("    | %d ", aux->Vlr);
+        aux = aux->prox;
+    }
+    free(aux);    
 }
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int;
+    int valor, op;
+
+    do
+    {
+        system("cls");
+        printf("============== Fila ==============");
+        printf("0_Sair");
+        printf("1_Enfileirar");
+        printf("2_Desenfileirar");
+        scanf("%d", &op);
+
+
+        switch (op)
+        {
+        case 0:
+            printf("Saindo..");
+            break;
+        case 1:
+            printf("1_Empilhndo");
+            break;
+        case 2:
+            printf("2_Desempilhando");
+            break;
+        default:
+            break;
+        }
+    } while (op != 0);
+    
 
     printf("\n\n");
     // scanf("%", );

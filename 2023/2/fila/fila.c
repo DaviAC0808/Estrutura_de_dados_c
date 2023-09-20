@@ -71,7 +71,7 @@ int remover(fila *f)
     return x;
 }
 
-int mostrar(fila *f)
+void mostrar(fila *f)
 {
     no *aux = malloc(sizeof(no));
     aux = f->inicio;
