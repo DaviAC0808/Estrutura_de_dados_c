@@ -39,10 +39,12 @@ void *insere(fila *f, int vlr)
     novo->Vlr = vlr;
     novo->prox = NULL;
 
-    if (verificar(f)== 1){//inserindo 1º elemento
+    if (verificar(f) == 1)
+    { // inserindo 1º elemento
         f->inicio = NULL;
         f->fim = NULL;
-    }   else
+    }
+    else
     {
         f->fim->prox = novo;
         f->fim = novo;
@@ -84,15 +86,17 @@ int mostrar(fila *f)
 
 int main()
 {
-    no *f1 = malloc(sizeof(no));
-    criar(f1); 
+    fila *f1 = malloc(sizeof(no));
+    criar(f1);
 
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int x, op;
+    int ins, op;
 
+    system("cls");
     do
     {
-        system("cls");
+
+        mostrar(f1);
         printf("\n========= Enfileirando Valores =========\n");
         printf("\n0_ Sair");
         printf("\n1_ Empilhar");
@@ -108,16 +112,21 @@ int main()
             break;
         case 1:
             printf("Digite o valor a ser empilhado: ");
-            scanf("%d", &f1);
+            scanf("%d", &ins);
+
+            insere(f1, ins);
+
             break;
-        
+        case 2:
+            remover(f1);
+            break;
         default:
-            printf("Digite um valor válidp!");
+            printf("\nDigite um valor válido!\n");
+            system("pause");
             break;
         }
 
     } while (op != 0);
-    
 
     printf("\n\n");
     // scanf("%", );
