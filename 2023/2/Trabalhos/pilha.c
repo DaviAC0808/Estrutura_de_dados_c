@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+// #include "ex_pilha.h"
 
 typedef struct no
 {
@@ -35,48 +36,42 @@ void empilhar(pilha *p, int vlr)
 {
     no *novo = malloc(sizeof(no));
 
-    if (novo == NULL)
-    {
-        // Lidar com erro de alocação de memória, se necessário
-        return;
-    }
-
     novo->Vlr = vlr;
     novo->ant = p->topo;
     p->topo = novo;
+
+    novo = NULL;
+    free(novo);
 }
 
 int desempilhar(pilha *p)
 {
-    if (verificar(p) == 1)
-    {
-        printf("Pilha vazia\n");
-        return -1; // Retorna um valor inválido para indicar erro
-    }
-
     int x;
     no *aux;
+    x = p->topo->Vlr;
     aux = p->topo;
-    x = aux->Vlr;
     p->topo = aux->ant;
     aux->ant = NULL;
     free(aux);
     return x;
 }
 
-void inverter(pilha *pa, pilha *pb)
+void inverter(pilha *pa, pilha *pb, int x)
 {
-    while (!verificar(pa))
-    {
-        int valor = desempilhar(pa);
-        empilhar(pb, valor);
-    }
+    /*pa - pilha a ser esvaziada
+      pb - pilah aux
+      pc - pilha return*/
+
+    desempilhar(pa, x);
+    printf("\nDesempilhado: %d\n", &x);
+    system("pause");
 }
 
 void mostrar(pilha *p)
 {
     if (verificar(p) == 0)
     {
+
         no *aux;
         aux = p->topo;
 
@@ -96,19 +91,20 @@ void menu()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
 
-    pilha p1;
-    criar(&p1);
+    // pilhas
+    pilha *p1 = malloc(sizeof(pilha));
+    criar(p1);
 
-    pilha p2;
-    criar(&p2);
+    pilha *p2 = malloc(sizeof(pilha));
+    criar(p2);
 
-    int op; // opcao recursiva
+    int op, x; // opcao recursiva
 
     do
     {
         system("cls");
         printf("\n Pilha: \n");
-        mostrar(&p1);
+        mostrar(p1);
 
         printf("\n\n");
         printf("0 - Sair \n");
@@ -122,6 +118,7 @@ void menu()
         switch (op)
         {
         case 0:
+            op = 0;
             break;
 
         case 1:
@@ -131,7 +128,8 @@ void menu()
             printf("\n Informe um valor\n");
             scanf("%d", &valor);
 
-            empilhar(&p1, valor);
+            // empilha(2a,30)
+            empilhar(p1, valor);
 
             break;
         }
@@ -139,15 +137,15 @@ void menu()
         case 2:
         { // desempilhando
 
-            int valorDesempilhado = desempilhar(&p1);
-
-            if (valorDesempilhado == -1)
+            if (verificar(p1) == 1)
             {
-                printf("Pilha vazia\n");
+                printf("pilha vazia\n");
+                printf("nao e possivel remover \n");
+                getchar();
             }
             else
             {
-                printf("Valor desempilhado: %d\n", valorDesempilhado);
+                desempilhar(p1, &x);
             }
 
             break;
@@ -156,10 +154,7 @@ void menu()
         case 3:
         { // manipular
 
-            inverter(&p1, &p2);
-            printf("Pilha invertida com sucesso!\n");
-
-            break;
+            inverter(p1, p2, x);
         }
         }
 
@@ -168,7 +163,9 @@ void menu()
 
 int main()
 {
+
     menu();
+
     printf("\n\n");
     return 0;
 }
