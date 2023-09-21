@@ -106,15 +106,40 @@ int testar_quantidade(pilha *pa, pilha *pb)
         y = y + 1;
     }
 
-    if (x = y)
+    if (x == y)
     {
-        printf("\nAs pilhas são iguais!\n");
-        return 0;
+        return 0; // pilhas iguais
     }
     else
     {
-        printf("\nAs pilhas não têm o mesmo número de elementos!\n");
-        return 1;
+        return 1; // pilhas diferentes
+    }
+}
+
+int testar_igualdade(pilha *pa, pilha *pb)
+{
+    no *aux1 = pa->topo;
+    no *aux2 = pb->topo;
+
+    while (aux1 != NULL && aux2 != NULL)
+    {
+        if (aux1->Vlr != aux2->Vlr)
+        {
+            return 0; // Pilhas não são iguais
+        }
+
+        aux1 = aux1->ant;
+        aux2 = aux2->ant;
+    }
+
+    // As pilhas são iguais apenas se ambas forem vazias no final do loop
+    if (aux1 == NULL && aux2 == NULL)
+    {
+        return 1; // Pilhas são iguais
+    }
+    else
+    {
+        return 0; // Pilhas não são iguais
     }
 }
 
@@ -138,33 +163,43 @@ void mostrar(pilha *p)
     }
 }
 
-void menu()
+int menu()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
 
-    // pilhas
+    // Pilhas
     pilha *p1 = malloc(sizeof(pilha));
     criar(p1);
 
     pilha *p2 = malloc(sizeof(pilha));
     criar(p2);
 
-    int op, x; // opcao recursiva
+    int op;         // Opção do menu
+    int resultado;  // Resultado do teste de igualdade
+    int valor1;     // p1
+    int valor2;     // p2
+    int quantidade; // Resultado do teste de quantidade
+    int vlrdes1;     //valor desempilhado
+    int vlrdes2;     //valor desempilhado
 
     do
     {
         system("cls");
-        printf("\n Pilha: \n");
+        printf("\n Pilha 1: \n");
         mostrar(p1);
-        printf("\n");
-        printf("0 - Sair \n");
-        printf("1 - Empilhar \n");
-        printf("2 - Desempilhar \n");
-        printf("3 - Questão 1 \n");
-        printf("4 - Questão 2 \n");
-        printf("5 - Questão 3 \n");
+        printf("\n Pilha 2: \n");
+        mostrar(p2);
 
-        printf("\n\n Informe a opcao :>_");
+        printf("\n\n");
+        printf("0 - Sair \n");
+        printf("1 - Empilhar em P1 \n");
+        printf("2 - Empilhar em P2 \n");
+        printf("3 - Desempilhar em P1 \n");
+        printf("4 - Desempilhar em P2 \n");
+        printf("5 - Testar quantidade entre P1 e P2 \n");
+        printf("6 - Testar igualdade entre P1 e P2 \n");
+
+        printf("\n\n Informe a opção :>_");
         scanf("%d", &op);
 
         switch (op)
@@ -173,77 +208,67 @@ void menu()
             op = 0;
             break;
 
-        case 1:
-        { // empilhar
+        case 1: // Empilhar em p1
 
-            int valor;
-            printf("\n Informe um valor\n");
-            scanf("%d", &valor);
-
-            // empilha(2a,30)
-            empilhar(p1, valor);
+            printf("\n Informe um valor para P1: ");
+            scanf("%d", &valor1);
+            empilhar(p1, valor1);
             break;
-        }
 
-        case 2:
-        { // desempilhando
+        case 2: // Empilhar em p2
 
-            if (verificar(p1) == 1)
-            {
-                printf("pilha vazia\n");
-                printf("nao e possivel remover \n");
-                getchar();
-            }
-            else
-            {
-                x = desempilhar(p1);
-                printf("\nDesempilhando o valor %d?\n", x);
-                system("pause");
-            }
+            printf("\n Informe um valor para P2: ");
+            scanf("%d", &valor2);
+            empilhar(p2, valor2);
             break;
-        }
+
         case 3:
-        {
-            inverter(p1, p2);
-            printf("\nDesempilhando p1\n");
-            mostrar(p1);
-            printf("\nEmpilhando p1 em p2\n");
-            mostrar(p2);
-            printf("\n\n");
+            vlrdes1 = desempilhar(p1);
+            printf("Valor desempilhado: %d\n", vlrdes1);
             system("pause");
-        }
+            break;
+
         case 4:
-        {
-            if (testar_quantidade(p1, p2))
+            vlrdes2 = desempilhar(p2);
+            printf("Valor desempilhado: %d\n", vlrdes2);
+            system("pause");
+            break;
+
+        case 5:
+
+            printf("Teste de quantidade");
+            quantidade = testar_quantidade(p1, p2);
+            if (quantidade)
             {
-                printf("\nAs pilhas são iguais!\n");
+                printf("\nA quantidade de numeros é igual!\n");
             }
             else
             {
-                printf("\nAs pilhas não são iguais!\n");
+                printf("\nA qantidade de números não é a mesma!\n");
+            }
+
+        case 6: // Testar igualdade entre p1 e p2
+
+            resultado = testar_igualdade(p1, p2);
+            if (resultado)
+            {
+                printf("\n As pilhas P1 e P2 são iguais.\n");
+            }
+            else
+            {
+                printf("\n As pilhas P1 e P2 não são iguais.\n");
             }
             system("pause");
+            break;
         }
-        //case 5:
-        // {
-        //     if (testar_igualdade(p1, p2))
-        //     {
-        //         printf("\nAs pilhas são iguais!\n");
-        //     }
-        //     else
-        //     {
-        //         printf("\nAs pilhas não são iguais!\n");
-        //     }
-        //     system("pause");
-        // }
-        }
-
     } while (op != 0);
 
-    p1 = NULL;
-    p2 = NULL;
+    // Libere a memória alocada para as pilhas antes de sair
     free(p1);
     free(p2);
+
+    printf("\n\n");
+    return 0;
 }
 
 int main()
