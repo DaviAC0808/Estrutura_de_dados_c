@@ -88,7 +88,8 @@ void inverter(pilha *pa, pilha *pb)
 
 int testar_quantidade(pilha *pa, pilha *pb)
 {
-    int x, y;
+    int x = 0;
+    int y = 0;
     no *aux1 = malloc(sizeof(no));
     no *aux2 = malloc(sizeof(no));
 
@@ -238,13 +239,13 @@ int menu()
 
             printf("Teste de quantidade");
             quantidade = testar_quantidade(p1, p2);
-            if (quantidade)
+            if (quantidade!=0)
             {
-                printf("\nA quantidade de numeros é igual!\n");
+                printf("\nA quantidade de numeros não é a mesma!\n");
             }
             else
             {
-                printf("\nA qantidade de números não é a mesma!\n");
+                printf("\nA quantidade de números é a mesma!\n");
             }
 
         case 6: // Testar igualdade entre p1 e p2
