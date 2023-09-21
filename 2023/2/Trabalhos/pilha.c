@@ -56,17 +56,6 @@ int desempilhar(pilha *p)
     return x;
 }
 
-void inverter(pilha *pa, pilha *pb, int x)
-{
-    /*pa - pilha a ser esvaziada
-      pb - pilah aux
-      pc - pilha return*/
-
-    desempilhar(pa, x);
-    printf("\nDesempilhado: %d\n", &x);
-    system("pause");
-}
-
 void mostrar(pilha *p)
 {
     if (verificar(p) == 0)
@@ -110,7 +99,6 @@ void menu()
         printf("0 - Sair \n");
         printf("1 - Empilhar \n");
         printf("2 - Desempilhar \n");
-        printf("3 - Manipular \n ");
 
         printf("\n\n Informe a opcao :>_");
         scanf("%d", &op);
@@ -145,16 +133,12 @@ void menu()
             }
             else
             {
-                desempilhar(p1, &x);
+                x = desempilhar(p1);
+                printf("\nDeseja desempilhar o valor %d?\n", x);
+                system("pause");
             }
 
             break;
-        }
-
-        case 3:
-        { // manipular
-
-            inverter(p1, p2, x);
         }
         }
 
