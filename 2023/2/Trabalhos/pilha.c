@@ -23,8 +23,7 @@ int verificar(pilha *p)
 {
     if (p->topo == NULL)
     {
-        printf("\nA pilha está vazia!\n");
-        return 1;
+        return 1; // pilha vazia
     }
     else
     {
@@ -54,6 +53,62 @@ int desempilhar(pilha *p)
     aux->ant = NULL;
     free(aux);
     return x;
+}
+
+/*
+    1_Desenvolva uma função para inverter a posição dos elementos de uma
+    pilha P.
+*/
+
+void inverter(pilha *pa, pilha *pb)
+{
+    int vlr;
+    no *aux = malloc(sizeof(no));
+    aux->ant = NULL;
+
+    if (verificar(pa) == 0)
+    {
+        // pilha cheia
+        vlr = desempilhar(pa);
+        empilhar(pb, vlr);
+    }
+    else
+    {
+        pb->topo = NULL;
+    }
+    aux = NULL;
+    free(aux);
+}
+
+/*
+    2_Desenvolva uma função para testar se uma pilha P1 tem mais elementos
+    que uma pilha P2.
+*/
+
+int testar_quantidade()
+{
+}
+
+/*
+    3_Desenvolva uma função para testar se duas pilhas P1 e P2 são iguais.
+*/
+
+int testar_igualdade(pilha *pa, pilha *pb)
+{
+    no *aux = malloc(sizeof(no));
+
+    do
+    {
+        aux->Vlr = pb->topo->Vlr;
+        if (aux->Vlr == pa->topo->Vlr){
+            aux = pb->topo->ant;
+        }
+        else
+        {
+            printf("As pilhas não são iguais!");
+        }
+    } while (aux == NULL);
+    free(aux);
 }
 
 void mostrar(pilha *p)
@@ -94,11 +149,13 @@ void menu()
         system("cls");
         printf("\n Pilha: \n");
         mostrar(p1);
-
-        printf("\n\n");
+        printf("\n");
         printf("0 - Sair \n");
         printf("1 - Empilhar \n");
         printf("2 - Desempilhar \n");
+        printf("3 - Questão 1 \n");
+        printf("4 - Questão 2 \n");
+        printf("5 - Questão 3 \n");
 
         printf("\n\n Informe a opcao :>_");
         scanf("%d", &op);
@@ -118,7 +175,6 @@ void menu()
 
             // empilha(2a,30)
             empilhar(p1, valor);
-
             break;
         }
 
@@ -134,11 +190,27 @@ void menu()
             else
             {
                 x = desempilhar(p1);
-                printf("\nDeseja desempilhar o valor %d?\n", x);
+                printf("\nDesempilhando o valor %d?\n", x);
                 system("pause");
             }
-
             break;
+        }
+        case 3:
+        {
+            inverter(p1, p2);
+            printf("\nDesempilhando p1\n");
+            mostrar(p1);
+            printf("\nEmpilhando p1 em p2\n");
+            mostrar(p2);
+            printf("\n\n");
+            system("pause");
+        }
+        case 4:
+        {
+        }
+        case 5:
+        {
+            testar_igualdade(p1, p2);
         }
         }
 
