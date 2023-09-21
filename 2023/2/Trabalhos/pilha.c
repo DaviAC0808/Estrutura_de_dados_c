@@ -83,32 +83,39 @@ void inverter(pilha *pa, pilha *pb)
 /*
     2_Desenvolva uma função para testar se uma pilha P1 tem mais elementos
     que uma pilha P2.
-*/
-
-int testar_quantidade()
-{
-}
-
-/*
     3_Desenvolva uma função para testar se duas pilhas P1 e P2 são iguais.
 */
 
-int testar_igualdade(pilha *pa, pilha *pb)
+int testar_quantidade(pilha *pa, pilha *pb)
 {
-    no *aux = malloc(sizeof(no));
+    int x, y;
+    no *aux1 = malloc(sizeof(no));
+    no *aux2 = malloc(sizeof(no));
 
-    do
+    aux1 = pa->topo;
+    aux2 = pb->topo;
+
+    while (aux1 != NULL)
     {
-        aux->Vlr = pb->topo->Vlr;
-        if (aux->Vlr == pa->topo->Vlr){
-            aux = pb->topo->ant;
-        }
-        else
-        {
-            printf("As pilhas não são iguais!");
-        }
-    } while (aux == NULL);
-    free(aux);
+        aux1 = aux1->ant;
+        x = x + 1;
+    }
+    while (aux2 != NULL)
+    {
+        aux2 = aux2->ant;
+        y = y + 1;
+    }
+
+    if (x = y)
+    {
+        printf("\nAs pilhas são iguais!\n");
+        return 0;
+    }
+    else
+    {
+        printf("\nAs pilhas não têm o mesmo número de elementos!\n");
+        return 1;
+    }
 }
 
 void mostrar(pilha *p)
@@ -207,14 +214,36 @@ void menu()
         }
         case 4:
         {
+            if (testar_quantidade(p1, p2))
+            {
+                printf("\nAs pilhas são iguais!\n");
+            }
+            else
+            {
+                printf("\nAs pilhas não são iguais!\n");
+            }
+            system("pause");
         }
-        case 5:
-        {
-            testar_igualdade(p1, p2);
-        }
+        //case 5:
+        // {
+        //     if (testar_igualdade(p1, p2))
+        //     {
+        //         printf("\nAs pilhas são iguais!\n");
+        //     }
+        //     else
+        //     {
+        //         printf("\nAs pilhas não são iguais!\n");
+        //     }
+        //     system("pause");
+        // }
         }
 
     } while (op != 0);
+
+    p1 = NULL;
+    p2 = NULL;
+    free(p1);
+    free(p2);
 }
 
 int main()
