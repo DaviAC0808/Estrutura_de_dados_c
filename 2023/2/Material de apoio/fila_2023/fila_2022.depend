@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1647562920 source:d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022\fila_2022\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+
+1647562908 d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022\fila_2022\fila.h
+
+1648768372 source:d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"pilha.h"
+
+1648768403 d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\fila.h
+
+1648510023 source:d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\main.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"pilha.h"
+
+1648510715 d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\pilha.h
+
+1648510715 source:d:\1 - iftm\4 - iftm 2022\1 - estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1648768412 source:e:\iftm - 2023 - 1\estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\main.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"pilha.h"
+
+1694699140 e:\iftm - 2023 - 1\estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\fila.h
+
+1648510715 e:\iftm - 2023 - 1\estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\pilha.h
+
+1648510715 source:e:\iftm - 2023 - 1\estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1694700995 source:e:\iftm - 2023 - 1\estrutura de dados\9 - aula 9 - fila dinâmica\aula dia 17-03-2022 - copia\fila_2022\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"pilha.h"
+

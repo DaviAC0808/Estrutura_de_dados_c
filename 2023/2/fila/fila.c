@@ -33,6 +33,10 @@ int verificar(fila *f)
     }
 }
 
+void insere_primeiro(fila *f, int vlr){
+    
+}
+
 void insere(fila *f, int vlr)
 {
 
