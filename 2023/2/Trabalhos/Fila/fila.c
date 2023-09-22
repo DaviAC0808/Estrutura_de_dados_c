@@ -44,11 +44,58 @@ void inserir(fila *f, int vlr){
         f->fim->prox = novo;
         f->fim = novo;
     }
-    
 }
 
+int remover(fila *f){
+    int x;
+    no *aux = malloc(sizeof(no));
+
+    x = f->inicio->Vlr;
+    aux = f->inicio;
+    f->inicio = aux->prox;
+
+    if (f->inicio == NULL)
+    {
+        f->fim = NULL;
+    }
+    free(aux);
+    return x;
+}
+
+
+
 void menu(){
-    
+    fila *f1 = malloc(sizeof(fila));
+    criar(f1);
+
+    int valor, op;
+
+    do
+    {
+        system("cls");
+        printf("============== Fila ==============");
+        printf("0_Sair");
+        printf("1_Enfileirar");
+        printf("2_Desenfileirar");
+        scanf("%d", &op);
+
+
+        switch (op)
+        {
+        case 0:
+            printf("Saindo..");
+            break;
+        case 1:
+            printf("1_Empilhndo");
+            break;
+        case 2:
+            printf("2_Desempilhando");
+            break;
+        default:
+            break;
+        }
+    } while (op != 0);
+    free(f1);    
 }
 
 int main()

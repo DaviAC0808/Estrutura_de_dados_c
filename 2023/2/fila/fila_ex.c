@@ -95,6 +95,9 @@ void mostrar(fila *f){
 }
 
 void menu(){
+    fila *f1 = malloc(sizeof(fila));
+    criar(f1);
+
 
     int valor, op;
 
@@ -115,9 +118,14 @@ void menu(){
             break;
         case 1:
             printf("1_Empilhndo");
+            printf("Digite o valor a ser inserido: ");
+            scanf("%d", &valor);
+            inserir(f1, valor);
             break;
         case 2:
             printf("2_Desempilhando");
+            printf("Removendo o valor %d", );
+            
             break;
         default:
             break;
