@@ -33,14 +33,27 @@ int verificar(pilha *p)
 
 void empilhar(pilha *p, int vlr)
 {
-    no *novo = malloc(sizeof(no));
+    int x = 0;
+    no *aux1 = malloc(sizeof(no));
+    aux1 = p->topo;
 
-    novo->Vlr = vlr;
-    novo->ant = p->topo;
-    p->topo = novo;
+    while (aux1 != NULL)
+    {
+        aux1 = aux1->ant;
+        x = x + 1;
+    }
 
-    novo = NULL;
-    free(novo);
+    if (x <= 10)
+    {
+        no *novo = malloc(sizeof(no));
+
+        novo->Vlr = vlr;
+        novo->ant = p->topo;
+        p->topo = novo;
+
+        novo = NULL;
+        free(novo);
+    }
 }
 
 int desempilhar(pilha *p)
