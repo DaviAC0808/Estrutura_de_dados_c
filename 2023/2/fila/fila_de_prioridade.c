@@ -32,7 +32,7 @@ int verificar(fila *f)
     }
 }
 
-void *insere(fila *f, int vlr)
+void insere(fila *f, int vlr)
 {
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;

@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// #include "fila.h"
-// #include "pilha.h"
-
 typedef struct Tpilha
 {
   int item;
@@ -102,7 +99,7 @@ void mostra_fila(fila *f)
 // {
 //   int valor;
 
-//   while (!fila_vazia(f))
+//   while (fila_vazia(f))
 //   {
 //     valor = remove_fila(f);
 //     empilha(p, valor);
@@ -113,5 +110,5 @@ void mostra_fila(fila *f)
 //     valor = remove_fila(f);
 //     empilha(p, remove_fila(f));
 //   }
-  //return 0;
-//}
+//   return 0;
+// }
