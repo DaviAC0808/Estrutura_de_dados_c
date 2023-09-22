@@ -33,7 +33,7 @@ int verificar(fila *f)
 {
     if (f->inicio == NULL)
     {
-        return 1;
+        return 1;//fila vazia
     }
     else
     {
@@ -94,9 +94,8 @@ void mostrar(fila *f){
     free(aux);    
 }
 
-int main()
-{
-    setlocale(LC_ALL, "Portuguese_Brazil");
+void menu(){
+
     int valor, op;
 
     do
@@ -124,7 +123,12 @@ int main()
             break;
         }
     } while (op != 0);
-    
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese_Brazil");
+    menu();
 
     printf("\n\n");
     // scanf("%", );
