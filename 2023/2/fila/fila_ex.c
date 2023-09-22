@@ -2,13 +2,22 @@
 #include <stdlib.h>
 #include <locale.h>
 
+/*
+  0_typedef
+  1_cria
+  2_verifica
+  3_insere
+  4_remove
+  5_mostra
+*/
+
 typedef struct no
 {
     int Vlr;
     struct no *prox;
 } no;
 
-typedef struct fila
+typedef struct fila_ex
 {
     no *inicio;
     no *fim;
@@ -16,15 +25,15 @@ typedef struct fila
 
 void criar(fila *f)
 {
-    f->inicio = NULL;
     f->fim = NULL;
+    f->inicio = NULL;
 }
 
 int verificar(fila *f)
 {
     if (f->inicio == NULL)
     {
-        return 1; // fila vazia
+        return 1;
     }
     else
     {
@@ -32,14 +41,14 @@ int verificar(fila *f)
     }
 }
 
-void insere(fila *f, int vlr)
-{
+void inserir(fila *f, int vlr)
+{ // inicialza o novo
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;
     novo->prox = NULL;
 
     if (verificar(f) == 1)
-    { // inserindo 1º elemento
+    {
         f->inicio = novo;
         f->fim = novo;
     }
@@ -48,17 +57,18 @@ void insere(fila *f, int vlr)
         f->fim->prox = novo;
         f->fim = novo;
     }
+
     novo = NULL;
     free(novo);
 }
 
-int remove(fila *f)
+int remover(fila *f)
 {
     int x;
     no *aux = malloc(sizeof(no));
 
     aux = f->inicio;
-    f->inicio = aux->prox; // ou f->inicio = f->inicio->prox
+    f->inicio = aux->prox;
     aux->prox = NULL;
 
     if (f->inicio == NULL)
@@ -71,67 +81,51 @@ int remove(fila *f)
     return x;
 }
 
-void mostrar(fila *f)
-{
+void mostrar(fila *f){
+
     no *aux = malloc(sizeof(no));
-    aux = f->inicio;
+    aux->Vlr = f->inicio->Vlr; 
 
     while (aux != NULL)
     {
-        printf("| %d", aux->Vlr);
+        printf("    | %d ", aux->Vlr);
         aux = aux->prox;
     }
+    free(aux);    
 }
 
 int main()
 {
-    fila *f1 = malloc(sizeof(no));
-    criar(f1);
-
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int ins, op;
+    int valor, op;
 
     do
     {
         system("cls");
-        mostrar(f1);
-        printf("\n========= Enfileirando Valores =========\n");
-        printf("\n0_ Sair");
-        printf("\n1_ Empilhar");
-        printf("\n2_ Desempillhar");
-        printf("\n\n");
+        printf("============== Fila ==============");
+        printf("0_Sair");
+        printf("1_Enfileirar");
+        printf("2_Desenfileirar");
         scanf("%d", &op);
+
 
         switch (op)
         {
         case 0:
-            printf("Saindo...");
+            printf("Saindo..");
             break;
         case 1:
-            printf("Digite o valor a ser empilhado: ");
-            scanf("%d", &ins);
-
-            insere(f1, ins);
-
+            printf("1_Empilhndo");
             break;
         case 2:
-            if (verificar(f1) == 1)
-            {
-                printf("\nLista Vazia!\n");
-                system("pause");
-            }
-            else
-            {
-                remover(f1);
-            }
+            printf("2_Desempilhando");
             break;
         default:
-            printf("\nDigite um valor válido!\n");
-            system("pause");
             break;
         }
-
     } while (op != 0);
+    
 
     printf("\n\n");
+    // scanf("%", );
 }

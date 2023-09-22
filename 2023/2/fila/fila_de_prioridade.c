@@ -32,7 +32,7 @@ int verificar(fila *f)
     }
 }
 
-void insere(fila *f, int vlr)
+void *insere(fila *f, int vlr)
 {
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;
@@ -52,7 +52,7 @@ void insere(fila *f, int vlr)
     free(novo);
 }
 
-int remove(fila *f)
+int remover(fila *f)
 {
     int x;
     no *aux = malloc(sizeof(no));
@@ -70,6 +70,8 @@ int remove(fila *f)
     free(aux);
     return x;
 }
+
+
 
 void mostrar(fila *f)
 {
