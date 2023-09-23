@@ -92,28 +92,33 @@ void mostra_fila(fila *f)
   }
 }
 
+void mostra_pilha(pilha *p)
+{
+
+  no *aux = p->topo;
+
+  while (aux != NULL)
+  {
+    printf("| %d", aux->Vlr);
+    aux = aux->prox;
+  }
+}
+
 void empilhar(pilha *p, int vlr){
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;
     novo->prox = p->topo;
 }
 
-int fila_pilha(fila *f, pilha *p)
+void fila_pilha(fila *f, pilha *p)
 {
   int valor;
 
-  while (verificar_fila(f))
+  while (verificar_fila(f) == 1)
   {
     valor = remover(f);
     empilhar(p, valor);
   }
-
-  while (verificar_fila(f) != 1)
-  {
-    valor = remover(f);
-    empilhar(p, remover(f));
-  }
-  return 0;
 }
 
 void menu(){
@@ -130,6 +135,10 @@ void menu(){
     do
     {
         system("cls");
+        mostra_fila(f1);
+        printf("\n");
+        mostra_pilha(p1);
+        printf("\n");
         printf("\n============== Fila ==============\n");
         printf("\n0_Sair");
         printf("\n1_Enfileirar");
@@ -155,7 +164,8 @@ void menu(){
             
             x = fila_pilha(f1, p1);
 
-            printf("O vbalor desenfileirado e empilhado foi: %d", x);
+            printf("\nO valor desenfileirado e empilhado foi: %d", x);
+            printf("\n");
             system("pause");
             
             break;
