@@ -14,12 +14,31 @@ typedef struct fila
     no *fim;
 }fila;
 
-void criar(fila *f){
+typedef struct pilha
+{
+    no *topo;
+}pilha;
+
+void criar_pilha(pilha *p){
+    p->topo = NULL;
+}
+
+void verificar_pilha(pilha *p){
+    if (p->topo == NULL)
+    {
+        return 0;//pilha vazia
+    }else
+    {
+        return 1;
+    }
+}
+
+void criar_fila(fila *f){
     f->fim = NULL;
     f->inicio = NULL;
 }
 
-int verificar(fila *f){
+int verificar_fila(fila *f){
     if (f->inicio == NULL)
     {
         return 0;//fila vazia
@@ -35,7 +54,7 @@ void inserir(fila *f, int vlr){
     novo->Vlr = vlr;
     novo->prox = NULL;
     
-    if (verificar(f) == 0)
+    if (verificar_fila(f) == 0)
     {
         f->fim = novo;
         f->inicio = novo;
@@ -61,35 +80,84 @@ int remover(fila *f){
     free(aux);
     return x;
 }
+void mostra_fila(fila *f)
+{
 
+  no *aux = f->inicio;
 
+  while (aux != NULL)
+  {
+    printf("| %d", aux->Vlr);
+    aux = aux->prox;
+  }
+}
+
+void empilhar(pilha *p, int vlr){
+    no *novo = malloc(sizeof(no));
+    novo->Vlr = vlr;
+    novo->prox = p->topo;
+}
+
+int fila_pilha(fila *f, pilha *p)
+{
+  int valor;
+
+  while (verificar_fila(f))
+  {
+    valor = remover(f);
+    empilhar(p, valor);
+  }
+
+  while (verificar_fila(f) != 1)
+  {
+    valor = remover(f);
+    empilhar(p, remover(f));
+  }
+  return 0;
+}
 
 void menu(){
     fila *f1 = malloc(sizeof(fila));
-    criar(f1);
+    criar_fila(f1);
 
-    int valor, op;
+    pilha *p1 = malloc(sizeof(no));
+    criar_pilha(p1);
+
+    int valor;  //enfileirado
+    int x;     //desenfileirado
+    int op;    //operacional
 
     do
     {
         system("cls");
-        printf("============== Fila ==============");
-        printf("0_Sair");
-        printf("1_Enfileirar");
-        printf("2_Desenfileirar");
+        printf("\n============== Fila ==============\n");
+        printf("\n0_Sair");
+        printf("\n1_Enfileirar");
+        printf("\n2_Desenfileirar\n");
         scanf("%d", &op);
 
 
         switch (op)
         {
         case 0:
-            printf("Saindo..");
+            printf("Saindo..\n");
             break;
         case 1:
-            printf("1_Empilhndo");
+            printf("1_Enfileirando\n");
+
+            printf("digite o valor a ser enfileirado: ");
+            scanf("%d", &valor);
+
+            inserir(f1, valor);
             break;
         case 2:
-            printf("2_Desempilhando");
+            printf("2_Desemfileirando e empilhando\n");
+            
+            x = fila_pilha(f1, p1);
+
+            printf("O vbalor desenfileirado e empilhado foi: %d", x);
+            system("pause");
+            
             break;
         default:
             break;

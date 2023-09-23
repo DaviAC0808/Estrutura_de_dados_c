@@ -35,7 +35,7 @@ int fila_vazia(fila *f)
 
   if (f->inicio == NULL)
   {
-    return 1;
+    return 1;//fila vazia
   }
   else
     return 0;
