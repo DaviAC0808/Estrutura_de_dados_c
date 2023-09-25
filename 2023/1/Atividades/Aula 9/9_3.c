@@ -163,6 +163,7 @@ int main()
 
         default:
             printf("Opcao invalida. Tente novamente.\n");
+            system("pause");
             break;
         }
     }

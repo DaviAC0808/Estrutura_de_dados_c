@@ -3,7 +3,8 @@
 #include <locale.h>
 
 /*
-1. Implemente uma função que receba uma fila, remova os elementos desta fila em uma pilha; 
+
+1. Implemente uma função que receba uma fila, remova os elementos desta fila em uma pilha;
 
 2. Implemente um função que receba duas pilhas, remova os elementos destas duas pilhas em uma fila;
 
@@ -22,66 +23,75 @@ typedef struct no
 {
     int Vlr;
     struct no *prox;
-}no;
+} no;
 
 typedef struct fila
 {
     no *inicio;
     no *fim;
-}fila;
+} fila;
 
 typedef struct pilha
 {
     no *topo;
-}pilha;
+} pilha;
 
-void criar_pilha(pilha *p){
+void criar_pilha(pilha *p)
+{
     p->topo = NULL;
 }
 
-int verificar_pilha(pilha *p){
+int verificar_pilha(pilha *p)
+{
     if (p->topo == NULL)
     {
-        return 0;//pilha vazia
-    }else
+        return 0; // pilha vazia
+    }
+    else
     {
         return 1;
     }
 }
 
-void criar_fila(fila *f){
+void criar_fila(fila *f)
+{
     f->fim = NULL;
     f->inicio = NULL;
 }
 
-int verificar_fila(fila *f){
+int verificar_fila(fila *f)
+{
     if (f->inicio == NULL)
     {
-        return 0;//fila vazia
-    }else
+        return 0; // fila vazia
+    }
+    else
     {
-    return 1;
-    }    
+        return 1;
+    }
 }
 
-void inserir(fila *f, int vlr){
+void inserir(fila *f, int vlr)
+{
     no *novo = malloc(sizeof(no));
 
     novo->Vlr = vlr;
     novo->prox = NULL;
-    
+
     if (verificar_fila(f) == 0)
     {
         f->fim = novo;
         f->inicio = novo;
-    }else
+    }
+    else
     {
         f->fim->prox = novo;
         f->fim = novo;
     }
 }
 
-int remover(fila *f){
+int remover(fila *f)
+{
     int x;
     no *aux = malloc(sizeof(no));
 
@@ -98,29 +108,43 @@ int remover(fila *f){
 }
 void mostra_fila(fila *f)
 {
+    if (verificar_fila(f) == 0)
+    {
+        printf("Fila vazia!");
+    }
+    else
+    {
+        no *aux = f->inicio;
 
-  no *aux = f->inicio;
-
-  while (aux != NULL)
-  {
-    printf("| %d", aux->Vlr);
-    aux = aux->prox;
-  }
+        while (aux != NULL)
+        {
+            printf("| %d", aux->Vlr);
+            aux = aux->prox;
+        }
+    }
 }
 
 void mostra_pilha(pilha *p)
 {
+    if (verificar_pilha(p) == 0)
+    {
+        printf("Pilha vazia!");
+    }
+    else
+    {
 
-  no *aux = p->topo;
+        no *aux = p->topo;
 
-  while (aux != NULL)
-  {
-    printf("| %d", aux->Vlr);
-    aux = aux->prox;
-  }
+        while (aux != NULL)
+        {
+            printf("| %d", aux->Vlr);
+            aux = aux->prox;
+        }
+    }
 }
 
-void empilhar(pilha *p, int vlr){
+void empilhar(pilha *p, int vlr)
+{
     no *novo = malloc(sizeof(no));
     novo->Vlr = vlr;
     novo->prox = p->topo;
@@ -149,13 +173,13 @@ int desempilhar(pilha *p)
 
 void fila_pilha(fila *f, pilha *p)
 {
-  int valor;
+    int valor;
 
-  while (verificar_fila(f) != 0)
-  {
-    valor = remover(f);
-    empilhar(p, valor);
-  }
+    while (verificar_fila(f) != 0)
+    {
+        valor = remover(f);
+        empilhar(p, valor);
+    }
 }
 
 void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
@@ -172,7 +196,6 @@ void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
         inserir(f, valor);
     }
 
-    
     while (verificar_pilha(pb) != 0)
     {
         int valor = desempilhar(pb);
@@ -180,8 +203,8 @@ void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
     }
 }
 
-
-void menu(){
+void menu()
+{
     fila *f1 = malloc(sizeof(fila));
     criar_fila(f1);
 
@@ -191,8 +214,8 @@ void menu(){
     pilha *p2 = malloc(sizeof(no));
     criar_pilha(p2);
 
-    int valor;  //enfileirado
-    int op;    //operacional
+    int valor; // enfileirado
+    int op;    // operacional
 
     do
     {
@@ -200,7 +223,6 @@ void menu(){
         mostra_fila(f1);
         printf("\n");
         mostra_pilha(p1);
-        printf("\n");
         printf("\n============== Fila ==============\n");
         printf("\n0_Sair");
         printf("\n1_Enfileirar");
@@ -209,7 +231,6 @@ void menu(){
         printf("\n\n");
 
         scanf("%d", &op);
-
 
         switch (op)
         {
@@ -226,22 +247,22 @@ void menu(){
             break;
         case 2:
             printf("2_Desemfileirando e empilhando\n");
-            
+
             fila_pilha(f1, p1);
             mostra_pilha(p1);
             printf("\n");
-            system("pause");            
+            system("pause");
             break;
         case 3:
             printf("\n3_Fundindo pilhas em fila\n");
-            
+
             pilhas_para_fila(p1, p2, f1);
             break;
         default:
             break;
         }
     } while (op != 0);
-    
+
     f1 = NULL;
     p1 = NULL;
     free(f1);
@@ -250,9 +271,9 @@ void menu(){
 
 int main()
 {
-    setlocale(LC_ALL,"Portuguese_Brazil");
+    setlocale(LC_ALL, "Portuguese_Brazil");
     menu();
 
     printf("\n\n");
-    //scanf("%", );
+    // scanf("%", );
 }

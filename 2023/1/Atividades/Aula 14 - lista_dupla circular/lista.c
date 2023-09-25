@@ -129,16 +129,16 @@ void mostra_lista(lista *l){
 
 
 
-//
-///* Função recursiva que exibe os valores contidos na lista*/
-//void imprime_recursiva(no* aux) {
-//
-//    if (aux!=NULL) {
-//        printf("| %d\n",aux->dado); /* imprime primeiro elemento */
-//        imprime_recursiva(aux->prox); /* imprime sub-lista */
-//    }
-//}
-//
+
+/* Função recursiva que exibe os valores contidos na lista*/
+void imprime_recursiva(no* aux) {
+
+   if (aux!=NULL) {
+       printf("| %d\n",aux->dado); /* imprime primeiro elemento */
+       imprime_recursiva(aux->prox); /* imprime sub-lista */
+   }
+}
+
 
 
 
