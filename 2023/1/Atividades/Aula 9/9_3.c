@@ -35,7 +35,7 @@ void inserir_inicio(deque *d, int valor)
 {
     if (deque_cheio(d))
     {
-        printf("Erro: deque cheia\n");
+        printf("Erro: deque cheio\n");
         return;
     }
     d->inicio = (d->inicio - 1 + d->capacidade) % d->capacidade;
@@ -119,15 +119,20 @@ int main()
         exibir_deque(d);
         printf("\n");
         printf("Escolha uma opcao:\n");
+        printf("\n");
+        printf("0. Sair\n");
         printf("1. Inserir no inicio\n");
         printf("2. Inserir no fim\n");
         printf("3. Remover do inicio\n");
         printf("4. Remover do fim\n");
-        printf("5. Sair\n");
         scanf("%d", &opcao);
+
 
         switch (opcao)
         {
+        case 0:
+            printf("\nEncerrando programa.\n");
+            exit(0);
         case 1:
             printf("Digite o valor a ser inserido no inicio: ");
             scanf("%d", &valor);
@@ -157,9 +162,6 @@ int main()
             system("cls");
             break;
 
-        case 5:
-            printf("Encerrando programa.\n");
-            exit(0);
 
         default:
             printf("Opcao invalida. Tente novamente.\n");
