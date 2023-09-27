@@ -3,6 +3,18 @@
 
 #define MAX_SIZE 100 // tamanho máximo da fila
 
+/*
+4.  Escreva funções em linguagem C para: enfileirar e desenfileirar pacientes de uma fila do tipo:
+    FILA_PACIENTES, conforme os
+    protótipos abaixo:
+
+    int enfileirar(FILA_PACIENTES *Fila,     PACIENTE  *Paciente)
+    Int desenfileirar(FILA_PACIENTES *Fila,     PACIENTE  *Paciente)
+
+    O valor de retorno deve ser igual a 0 quando a operação for bem sucedida, ou iguala 1 quando
+     ocorrer alguma situação em que a operação não possa ser efetuada.
+*/
+
 typedef struct
 {
     char nome[50];
