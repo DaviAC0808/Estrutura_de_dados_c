@@ -20,17 +20,6 @@ typedef struct no
     struct no *prox;
 } no;
 
-typedef struct fila
-{
-    no *inicio;
-    no *fim;
-} fila;
-
-typedef struct pilha
-{
-    no *topo;
-} pilha;
-
 typedef struct deque
 {
     no *inic;
@@ -52,71 +41,55 @@ int verifica_inicio_deque(deque *d){
     }
 }
 
-int verifica_fim_deque(deque *d){
-    if (d->fi == NULL)
+int verifica_fim_deque(deque *d, int count){
+    if (d->fi == count)
     {
-        return 0;
+        return 0;//deque cheio
     }else
     {
         return 1;
     }
 }
 
-void criar_pilha(pilha *p)
-{
-    p->topo = NULL;
-}
-
-int verificar_pilha(pilha *p)
-{
-    if (p->topo == NULL)
-    {
-        return 0; // pilha vazia
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-void criar_fila(fila *f)
-{
-    f->fim = NULL;
-    f->inicio = NULL;
-}
-
-int verificar_fila(fila *f)
-{
-    if (f->inicio == NULL)
-    {
-        return 0; // fila vazia
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-void inserir(fila *f, int vlr)
+void inserir_inicio(deque *d, int vlr)
 {
     no *novo = malloc(sizeof(no));
 
     novo->Vlr = vlr;
     novo->prox = NULL;
 
-    if (verificar_fila(f) == 0)
+    if (verifica_inicio_deque(d) == 0)
     {
-        f->fim = novo;
-        f->inicio = novo;
+        d->inic = novo;
+        d->fi = novo;
     }
     else
     {
-        f->fim->prox = novo;
-        f->fim = novo;
+        d->inic->prox = novo;
+        d->inic = novo;
     }
 }
 
-int remover(fila *f)
+void inserir_fim(deque *d, int vlr)
+{
+    no *novo = malloc(sizeof(no));
+
+    novo->Vlr = vlr;
+    novo->prox = NULL;
+
+    if (verifica_fim_deque(d) == 0)
+    {
+        d->fi = novo;
+        d->inic = novo;
+    }
+    else
+    {
+        d->fi->prox = novo;
+        d->fi = novo;
+    }
+}
+
+int remover(deque *d)
 {
     int x;
     no *aux = malloc(sizeof(no));
@@ -132,15 +105,16 @@ int remover(fila *f)
     free(aux);
     return x;
 }
-void mostra_fila(fila *f)
+
+void mostra_deque(deque *d)
 {
-    if (verificar_fila(f) == 0)
+    if (verifica_inicio_deque(d) == 0)
     {
-        printf("Fila vazia!");
+        printf("Deque vazio!");
     }
     else
     {
-        no *aux = f->inicio;
+        no *aux = d->inic;
 
         while (aux != NULL)
         {
@@ -150,71 +124,15 @@ void mostra_fila(fila *f)
     }
 }
 
-void mostra_pilha(pilha *p)
-{
-    if (verificar_pilha(p) == 0)
+void mostrar_deque(deque *d, int count){
+    if (verifica_fim_deque(d) == 0)
     {
-        printf("Pilha vazia!");
-    }
-    else
-    {
-
-        no *aux = p->topo;
-
-        while (aux != NULL)
+        printf("Deque vazio!");
+    }else{
+        for (int i = 0; i < count; i++)
         {
-            printf("| %d", aux->Vlr);
-            aux = aux->prox;
-        }
-    }
-}
-
-void empilhar(pilha *p, int vlr)
-{
-    no *novo = malloc(sizeof(no));
-    novo->Vlr = vlr;
-    novo->prox = p->topo;
-    p->topo = novo;
-    novo = NULL;
-    free(novo);
-}
-
-int desempilhar(pilha *p)
-{
-    if (verificar_pilha(p) == 0)
-    {
-        printf("Pilha vazia\n");
-        return -1; // Retorna um valor inválido para indicar erro
-    }
-
-    int x;
-    no *aux;
-    aux = p->topo;
-    x = aux->Vlr;
-    p->topo = aux->prox;
-    aux->prox = NULL;
-    free(aux);
-    return x;
-}
-
-void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
-{
-    if (verificar_pilha(pa) == 0 && verificar_pilha(pb) == 0)
-    {
-        printf("Ambas as pilhas estão vazias.\n");
-        return;
-    }
-
-    while (verificar_pilha(pa) != 0)
-    {
-        int valor = desempilhar(pa);
-        inserir(f, valor);
-    }
-
-    while (verificar_pilha(pb) != 0)
-    {
-        int valor = desempilhar(pb);
-        inserir(f, valor);
+            printf("%d", d->inic->Vlr);
+        }   
     }
 }
 
@@ -223,13 +141,20 @@ void menu()
     deque *d1 = malloc(sizeof(deque));
     criar_fila(d1);
 
+    int count; //vetor tamanho
     int valor; // enfileirado
     int op;    // operacional
+    int tamanho;
+
+    printf("Digite o tamanho do deque: ");
+    scanf("%d", &tamanho);
+
+    count = malloc(sizeof(tamanho));
 
     do
     {
         system("cls");
-        mostra_deque(d);
+        mostra_deque(d1);
         printf("\n");
 
         printf("\n============== DEQUE ==============\n");
@@ -250,7 +175,7 @@ void menu()
         case 1:
             printf("\n1_Inserir no início");
             
-            inserir(d);
+            inserir_inicio(d1);
             break;
         case 2:
             printf("1_Empilhando pilha_2\n");
