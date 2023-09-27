@@ -3,11 +3,6 @@
 #include <locale.h>
 
 /*
-
-1. Implemente uma função que receba uma fila, remova os elementos desta fila em uma pilha;
-
-2. Implemente um função que receba duas pilhas, remova os elementos destas duas pilhas em uma fila;
-
 3. Enquanto uma pilha permite a inserção e a eliminação de elementos em apenas uma extremidade e um fila permite a inserção em uma extremidade e a eliminação na outra extremidade, uma deque (double-ended queue, ou fila de extremidade dupla) permite a inserção e a eliminação em ambas as extremidades. Escreva quatro funções para inserir elementos e eliminar elementos de ambas as extremidades de uma deque construída a partir de um vetor dinâmico.
 
 4.  Escreva funções em linguagem C para: enfileirar e desenfileirar pacientes de uma fila do tipo: FILA_PACIENTES, conforme os
@@ -35,6 +30,37 @@ typedef struct pilha
 {
     no *topo;
 } pilha;
+
+typedef struct deque
+{
+    no *inic;
+    no *fi;
+}deque;
+
+void criar_deque(deque *d){
+    d->inic = NULL;
+    d->fi = NULL;
+}
+
+int verifica_inicio_deque(deque *d){
+    if (d->inic == NULL)
+    {
+        return 0;
+    }else
+    {
+        return 1;
+    }
+}
+
+int verifica_fim_deque(deque *d){
+    if (d->fi == NULL)
+    {
+        return 0;
+    }else
+    {
+        return 1;
+    }
+}
 
 void criar_pilha(pilha *p)
 {
@@ -171,17 +197,6 @@ int desempilhar(pilha *p)
     return x;
 }
 
-void fila_pilha(fila *f, pilha *p)
-{
-    int valor;
-
-    while (verificar_fila(f) != 0)
-    {
-        valor = remover(f);
-        empilhar(p, valor);
-    }
-}
-
 void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
 {
     if (verificar_pilha(pa) == 0 && verificar_pilha(pb) == 0)
@@ -205,14 +220,8 @@ void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
 
 void menu()
 {
-    fila *f1 = malloc(sizeof(fila));
-    criar_fila(f1);
-
-    pilha *p1 = malloc(sizeof(no));
-    criar_pilha(p1);
-
-    pilha *p2 = malloc(sizeof(no));
-    criar_pilha(p2);
+    deque *d1 = malloc(sizeof(deque));
+    criar_fila(d1);
 
     int valor; // enfileirado
     int op;    // operacional
@@ -220,14 +229,15 @@ void menu()
     do
     {
         system("cls");
-        mostra_fila(f1);
+        mostra_deque(d);
         printf("\n");
-        mostra_pilha(p1);
-        printf("\n============== Fila ==============\n");
+
+        printf("\n============== DEQUE ==============\n");
         printf("\n0_Sair");
-        printf("\n1_Enfileirar");
-        printf("\n2_Desenfileirar");
-        printf("\n3_Fundindo pilhas em fila");
+        printf("\n1_Inserir no início");
+        printf("\n1_Inserir no fim");
+        printf("\n2_Remover no início");
+        printf("\n2_Remover no fim");
         printf("\n\n");
 
         scanf("%d", &op);
@@ -238,25 +248,23 @@ void menu()
             printf("Saindo..\n");
             break;
         case 1:
-            printf("1_Enfileirando\n");
-
-            printf("digite o valor a ser enfileirado: ");
-            scanf("%d", &valor);
-
-            inserir(f1, valor);
+            printf("\n1_Inserir no início");
+            
+            inserir(d);
             break;
         case 2:
-            printf("2_Desemfileirando e empilhando\n");
+            printf("1_Empilhando pilha_2\n");
 
-            fila_pilha(f1, p1);
-            mostra_pilha(p1);
-            printf("\n");
-            system("pause");
+            printf("digite o valor a ser empilhado: ");
+            scanf("%d", &valor);
+
+            empilhar(p2, valor);
             break;
         case 3:
-            printf("\n3_Fundindo pilhas em fila\n");
+            printf("\n3_Fundindo pilhas em fila");
 
             pilhas_para_fila(p1, p2, f1);
+
             break;
         default:
             break;
