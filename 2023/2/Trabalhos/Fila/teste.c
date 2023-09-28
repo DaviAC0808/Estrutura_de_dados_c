@@ -41,36 +41,42 @@ typedef struct deque
     int Vlr;
     int tamanho;
     int capassidade;
-    struct deuqe *proximo;
-    struct deuqe *anterior
-}deque;
+    no *dinicio;//inicio
+    no *dfim//fim
+} deque;
 
-void criar_deque(deque *d){
-    deque *proximo = malloc(sizeof(deque)); 
-    deque *anterior = malloc(sizeof(deque)); 
+void criar_deque(deque *d)
+{
+    d->dfim = NULL;
+    d->dinicio = NULL;
     d->tamanho = 0;
     d->capassidade = 0;
     d->Vlr = 0;
 }
 
-int deque_vazio(deque *d){
+int deque_vazio(deque *d)
+{
     if (d->tamanho == 0)
     {
-        d->anterior = NULL;
-        d->proximo = d->anterior;
+        d->dfim = NULL;
+        d->dinicio = d->dfim;
         return 0;
-    }else{
+    }
+    else
+    {
         return 1;
     }
 }
 
-int deque_cheio(deque *d){
-    if (d->tamanho == d->capassidade)
+int deque_cheio(deque *d)
+{
+    if (d->tamanho >= d->capassidade)
     {
-        return 0;//deque == capacidade
-    }else
+        return 1; // deque cheio
+    }
+    else
     {
-        return 1;
+        return 0;
     }
 }
 
@@ -109,7 +115,7 @@ int verificar_fila(fila *f)
     }
 }
 
-void inserir(fila *f, int vlr)
+void inserir_fila(fila *f, int vlr)
 {
     no *novo = malloc(sizeof(no));
 
@@ -127,6 +133,26 @@ void inserir(fila *f, int vlr)
         f->fim = novo;
     }
 }
+
+void inserir_inicio_deque(deque *d, int vlr){
+    
+    no *novo = malloc(sizeof(no));
+
+    novo->Vlr = vlr;
+    novo->prox = NULL;
+
+    if (deque_vazio(d) == 0)
+    {
+        d->dinicio = novo;
+        d->dfim = novo;
+    }
+    else
+    {
+        novo->prox = d->dinicio;
+        d->dinicio = novo;
+    }
+}
+
 
 int remover(fila *f)
 {
@@ -181,6 +207,24 @@ void mostra_pilha(pilha *p)
     }
 }
 
+void mostrar_deque(deque *d)
+{
+    if (deque_vazio(d) == 0)
+    {
+        printf("Deuque vazio!");
+    }
+    else
+    {
+        no *count = d->dinicio;
+
+        while (count != NULL)
+        {
+            printf("    %d |", count->Vlr);
+            count = count->prox;
+        }
+    }
+}
+
 void empilhar(pilha *p, int vlr)
 {
     no *novo = malloc(sizeof(no));
@@ -220,7 +264,6 @@ void fila_pilha(fila *f, pilha *p)
     }
 }
 
-
 void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
 {
     if (verificar_pilha(pa) == 0 && verificar_pilha(pb) == 0)
@@ -232,13 +275,13 @@ void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
     while (verificar_pilha(pa) != 0)
     {
         int valor = desempilhar(pa);
-        inserir(f, valor);
+        inserir_fila(f, valor);
     }
 
     while (verificar_pilha(pb) != 0)
     {
         int valor = desempilhar(pb);
-        inserir(f, valor);
+        inserir_fila(f, valor);
     }
 }
 
@@ -262,7 +305,7 @@ void menu_q1()
         mostra_fila(f1);
         printf("\n");
         mostra_pilha(p1);
-        printf("\n============== Fila ==============\n");
+        printf("\n============== Questão 1 ==============\n");
         printf("\n0_Sair");
         printf("\n1_Enfileirar");
         printf("\n2_Desenfileirar e empilhar");
@@ -282,7 +325,7 @@ void menu_q1()
             printf("digite o valor a ser enfileirado: ");
             scanf("%d", &valor);
 
-            inserir(f1, valor);
+            inserir_fila(f1, valor);
             break;
         case 2:
             printf("2_Desemfileirando e empilhando\n");
@@ -308,16 +351,15 @@ void menu_q1()
     free(p1);
 }
 
-
 void menu_q2()
 {
     fila *f1 = malloc(sizeof(fila));
     criar_fila(f1);
 
-    pilha *p1 = malloc(sizeof(no));
+    pilha *p1 = malloc(sizeof(pilha));
     criar_pilha(p1);
 
-    pilha *p2 = malloc(sizeof(no));
+    pilha *p2 = malloc(sizeof(pilha));
     criar_pilha(p2);
 
     int valor; // enfileirado
@@ -331,7 +373,7 @@ void menu_q2()
         mostra_pilha(p1);
         printf("\n");
         mostra_pilha(p2);
-        printf("\n============== Fila ==============\n");
+        printf("\n============== Questão 2 ==============\n");
         printf("\n0_Sair");
         printf("\n1_Criar Pilha_1");
         printf("\n2_Criar Pilha_2");
@@ -378,8 +420,56 @@ void menu_q2()
     free(p1);
 }
 
-void menu_q3(){
-    deque
+void menu_q3()
+{
+
+    deque *d1 = malloc(sizeof(deque));
+    criar_deque(d1);
+
+    int valor; // enfileirado
+    int op;    // operacional
+
+    // capacidade = capacidade(d1);
+
+    do
+    {   
+        system("cls");
+        mostrar_deque(d1);
+        printf("\n");
+        printf("\n============== Questão 3 ==============\n");
+        printf("0_ Sair\n");
+        printf("1_ Inserir no início\n");
+        printf("2_ Inserir no fim\n");
+        printf("3_ Remover no início\n");
+        printf("4_ Remover no fim\n");
+        fflush(stdin);
+        scanf("%d", &op);
+
+        printf("\n\n");
+
+        switch (op)
+        {
+        case 1:
+            printf("digite o valor a ser inserido: ");
+            fflush(stdin);
+            scanf("%d", valor);
+            inserir_inicio_deque(d1);
+            break;
+        case 2:
+            inserir_fim_deque(d1);
+            break;
+        case 3:
+            remover_inicio_deque(d1);
+            break;
+        case 4:
+            remover_fim_deque(d1);
+            break;
+        
+        default:
+            break;
+        }
+
+    } while (op == 0);
 }
 
 int main()
@@ -401,9 +491,9 @@ int main()
         menu_q2();
         break;
 
-        //  case 3:
-        //     menu_q3();
-        //     break;
+    case 3:
+        menu_q3();
+        break;
 
         //  case 4:
         //     menu_q4();
