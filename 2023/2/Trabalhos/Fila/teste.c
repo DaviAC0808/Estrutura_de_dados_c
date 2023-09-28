@@ -442,14 +442,15 @@ int menu_q2(int voltar)
 int menu_q3(int voltar)
 {
     int capacidade;
-    
+
     system("cls");
     printf("Digite a capacidade da deque: ");
     scanf("%d", &capacidade);
     deque *d = criar_deque(capacidade);
 
     int opcao, valor;
-    do{
+    do
+    {
         printf("\n");
         exibir_deque(d);
         printf("\n============== Questão 3 ==============\n");
@@ -501,14 +502,16 @@ int menu_q3(int voltar)
             system("pause");
             break;
         }
-    }while (opcao != 0);
+    } while (opcao != 0);
     return voltar;
 }
 
-int main()
+int menu_q4(int voltar)
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
+}
 
+int menu_principal()
+{
     int questao;
     int voltar = 0;
     do
@@ -542,9 +545,9 @@ int main()
             menu_q3(voltar);
             break;
 
-            //  case 4:
-            //     menu_q4();
-            //     break;
+        case 4:
+            menu_q4(voltar);
+            break;
 
         default:
             printf("\n Questão não encontrada, tente novamente!\n");
@@ -552,6 +555,13 @@ int main()
             break;
         }
     } while (voltar == 0);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese_Brazil");
+
+    menu_principal();
 
     printf("\n\n");
 }
