@@ -38,46 +38,22 @@ typedef struct pilha
 
 typedef struct deque
 {
-    int Vlr;
+    int *dados;
     int tamanho;
-    int capassidade;
-    no *dinicio;//inicio
-    no *dfim//fim
+    int capacidade;
+    int inicio;
+    int fim;
 } deque;
 
-void criar_deque(deque *d)
+deque *criar_deque(int capacidade)
 {
-    d->dfim = NULL;
-    d->dinicio = NULL;
+    deque *d = (deque *)malloc(sizeof(deque));
+    d->dados = (int *)malloc(sizeof(int) * capacidade);
+    d->capacidade = capacidade;
     d->tamanho = 0;
-    d->capassidade = 0;
-    d->Vlr = 0;
-}
-
-int deque_vazio(deque *d)
-{
-    if (d->tamanho == 0)
-    {
-        d->dfim = NULL;
-        d->dinicio = d->dfim;
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-int deque_cheio(deque *d)
-{
-    if (d->tamanho >= d->capassidade)
-    {
-        return 1; // deque cheio
-    }
-    else
-    {
-        return 0;
-    }
+    d->inicio = 0;
+    d->fim = 0;
+    return d;
 }
 
 void criar_pilha(pilha *p)
@@ -134,26 +110,6 @@ void inserir_fila(fila *f, int vlr)
     }
 }
 
-void inserir_inicio_deque(deque *d, int vlr){
-    
-    no *novo = malloc(sizeof(no));
-
-    novo->Vlr = vlr;
-    novo->prox = NULL;
-
-    if (deque_vazio(d) == 0)
-    {
-        d->dinicio = novo;
-        d->dfim = novo;
-    }
-    else
-    {
-        novo->prox = d->dinicio;
-        d->dinicio = novo;
-    }
-}
-
-
 int remover(fila *f)
 {
     int x;
@@ -203,24 +159,6 @@ void mostra_pilha(pilha *p)
         {
             printf("| %d", aux->Vlr);
             aux = aux->prox;
-        }
-    }
-}
-
-void mostrar_deque(deque *d)
-{
-    if (deque_vazio(d) == 0)
-    {
-        printf("Deuque vazio!");
-    }
-    else
-    {
-        no *count = d->dinicio;
-
-        while (count != NULL)
-        {
-            printf("    %d |", count->Vlr);
-            count = count->prox;
         }
     }
 }
@@ -285,7 +223,92 @@ void pilhas_para_fila(pilha *pa, pilha *pb, fila *f)
     }
 }
 
-void menu_q1()
+int deque_vazio(deque *d)
+{
+    return d->tamanho == 0;
+}
+
+int deque_cheio(deque *d)
+{
+    return d->tamanho == d->capacidade;
+}
+
+void inserir_inicio(deque *d, int valor) // Função 1
+{
+    if (deque_cheio(d))
+    {
+        printf("Erro: deque cheio\n");
+        return;
+    }
+    d->inicio = (d->inicio - 1 + d->capacidade) % d->capacidade;
+    d->dados[d->inicio] = valor;
+    d->tamanho++;
+}
+
+void inserir_fim(deque *d, int valor) // Função 2
+{
+    if (deque_cheio(d))
+    {
+        printf("Erro: deque cheia\n");
+        return;
+    }
+    d->dados[d->fim] = valor;
+    d->fim = (d->fim + 1) % d->capacidade;
+    d->tamanho++;
+}
+
+int remover_inicio(deque *d) // Função 3
+{
+    if (deque_vazio(d))
+    {
+        printf("Erro: deque vazia\n");
+        return -1;
+    }
+    int valor = d->dados[d->inicio];
+    d->inicio = (d->inicio + 1) % d->capacidade;
+    d->tamanho--;
+    return valor;
+}
+
+int remover_fim(deque *d) // Função 4
+{
+    if (deque_vazio(d))
+    {
+        printf("Erro: deque vazia\n");
+        return -1;
+    }
+    d->fim = (d->fim - 1 + d->capacidade) % d->capacidade;
+    int valor = d->dados[d->fim];
+    d->tamanho--;
+    return valor;
+}
+
+void exibir_deque(deque *d)
+{
+    printf("Deque: ");
+    int i;
+    if (d->fim > d->inicio)
+    {
+        for (i = d->inicio; i < d->fim; i++)
+        {
+            printf("%d ", d->dados[i]);
+        }
+    }
+    else
+    {
+        for (i = d->inicio; i < d->capacidade; i++)
+        {
+            printf("%d ", d->dados[i]);
+        }
+        for (i = 0; i < d->fim; i++)
+        {
+            printf("%d ", d->dados[i]);
+        }
+    }
+    printf("\n");
+}
+
+int menu_q1(int voltar)
 {
     fila *f1 = malloc(sizeof(fila));
     criar_fila(f1);
@@ -306,10 +329,9 @@ void menu_q1()
         printf("\n");
         mostra_pilha(p1);
         printf("\n============== Questão 1 ==============\n");
-        printf("\n0_Sair");
-        printf("\n1_Enfileirar");
-        printf("\n2_Desenfileirar e empilhar");
-        // printf("\n3_Fundindo pilhas em fila");
+        printf("\n0_ Voltar");
+        printf("\n1_ Enfileirar");
+        printf("\n2_ Desenfileirar e empilhar");
         printf("\n\n");
 
         scanf("%d", &op);
@@ -317,7 +339,7 @@ void menu_q1()
         switch (op)
         {
         case 0:
-            printf("Saindo..\n");
+            voltar = 1;
             break;
         case 1:
             printf("1_Enfileirando\n");
@@ -335,11 +357,6 @@ void menu_q1()
             printf("\n");
             system("pause");
             break;
-        // case 3:
-        //     printf("\n3_Fundindo pilhas em fila\n");
-
-        //     pilhas_para_fila(p1, p2, f1);
-        //     break;
         default:
             break;
         }
@@ -349,9 +366,10 @@ void menu_q1()
     p1 = NULL;
     free(f1);
     free(p1);
+    return voltar;
 }
 
-void menu_q2()
+int menu_q2(int voltar)
 {
     fila *f1 = malloc(sizeof(fila));
     criar_fila(f1);
@@ -374,10 +392,10 @@ void menu_q2()
         printf("\n");
         mostra_pilha(p2);
         printf("\n============== Questão 2 ==============\n");
-        printf("\n0_Sair");
-        printf("\n1_Criar Pilha_1");
-        printf("\n2_Criar Pilha_2");
-        printf("\n3_Fundindo pilhas em fila");
+        printf("\n0_ Voltar");
+        printf("\n1_ Criar Pilha_1");
+        printf("\n2_ Criar Pilha_2");
+        printf("\n3_ Fundindo pilhas em fila");
         printf("\n\n");
 
         scanf("%d", &op);
@@ -385,7 +403,7 @@ void menu_q2()
         switch (op)
         {
         case 0:
-            printf("Saindo..\n");
+            voltar = 1;
             break;
         case 1:
             printf("1_Empilhando pilha_1\n");
@@ -418,58 +436,73 @@ void menu_q2()
     p1 = NULL;
     free(f1);
     free(p1);
+    return voltar;
 }
 
-void menu_q3()
+int menu_q3(int voltar)
 {
+    int capacidade;
+    
+    system("cls");
+    printf("Digite a capacidade da deque: ");
+    scanf("%d", &capacidade);
+    deque *d = criar_deque(capacidade);
 
-    deque *d1 = malloc(sizeof(deque));
-    criar_deque(d1);
-
-    int valor; // enfileirado
-    int op;    // operacional
-
-    // capacidade = capacidade(d1);
-
-    do
-    {   
-        system("cls");
-        mostrar_deque(d1);
+    int opcao, valor;
+    do{
         printf("\n");
+        exibir_deque(d);
         printf("\n============== Questão 3 ==============\n");
-        printf("0_ Sair\n");
-        printf("1_ Inserir no início\n");
-        printf("2_ Inserir no fim\n");
-        printf("3_ Remover no início\n");
-        printf("4_ Remover no fim\n");
-        fflush(stdin);
-        scanf("%d", &op);
+        printf("\n");
+        printf("0. Voltar\n");
+        printf("1. Inserir no inicio\n");
+        printf("2. Inserir no fim\n");
+        printf("3. Remover do inicio\n");
+        printf("4. Remover do fim\n");
+        scanf("%d", &opcao);
 
-        printf("\n\n");
-
-        switch (op)
+        switch (opcao)
         {
+        case 0:
+            printf("\nEncerrando programa.\n");
+            voltar = 1;
+            break;
         case 1:
-            printf("digite o valor a ser inserido: ");
-            fflush(stdin);
-            scanf("%d", valor);
-            inserir_inicio_deque(d1);
+            printf("Digite o valor a ser inserido no inicio: ");
+            scanf("%d", &valor);
+            inserir_inicio(d, valor);
+            system("cls");
             break;
         case 2:
-            inserir_fim_deque(d1);
+            printf("Digite o valor a ser inserido no fim: ");
+            scanf("%d", &valor);
+            inserir_fim(d, valor);
+            system("cls");
             break;
         case 3:
-            remover_inicio_deque(d1);
+            valor = remover_inicio(d);
+            if (valor != -1)
+            {
+                printf("Valor removido do inicio: %d\n", valor);
+            }
+            system("cls");
             break;
         case 4:
-            remover_fim_deque(d1);
+            valor = remover_fim(d);
+            if (valor != -1)
+            {
+                printf("Valor removido do fim: %d\n", valor);
+            }
+            system("cls");
             break;
-        
+
         default:
+            printf("Opcao invalida. Tente novamente.\n");
+            system("pause");
             break;
         }
-
-    } while (op == 0);
+    }while (opcao != 0);
+    return voltar;
 }
 
 int main()
@@ -477,30 +510,48 @@ int main()
     setlocale(LC_ALL, "Portuguese_Brazil");
 
     int questao;
-
-    printf("Qual questão quer acessar?");
-    scanf("%d", &questao);
-
-    switch (questao)
+    int voltar = 0;
+    do
     {
-    case 1:
-        menu_q1();
-        break;
+        system("cls");
+        printf("\n============== Aula 9 - Trabalho de Fila ==============\n");
+        printf("0_ Sair\n");
+        printf("1_ Questão 1\n");
+        printf("2_ Questão 2\n");
+        printf("3_ Questão 3\n");
+        printf("\nQual questão quer acessar?\n");
 
-    case 2:
-        menu_q2();
-        break;
+        scanf("%d", &questao);
 
-    case 3:
-        menu_q3();
-        break;
+        switch (questao)
+        {
+        case 0:
+            printf("Saindo..\n");
+            voltar = 1;
+            break;
 
-        //  case 4:
-        //     menu_q4();
-        //     break;
+        case 1:
+            menu_q1(voltar);
+            break;
 
-    default:
-        break;
-    }
+        case 2:
+            menu_q2(voltar);
+            break;
+
+        case 3:
+            menu_q3(voltar);
+            break;
+
+            //  case 4:
+            //     menu_q4();
+            //     break;
+
+        default:
+            printf("\n Questão não encontrada, tente novamente!\n");
+            system("pause");
+            break;
+        }
+    } while (voltar == 0);
+
     printf("\n\n");
 }
