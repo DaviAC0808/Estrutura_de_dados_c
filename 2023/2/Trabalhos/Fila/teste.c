@@ -47,8 +47,8 @@ typedef struct deque
 
 deque *criar_deque(int capacidade)
 {
-    deque *d = (deque *)malloc(sizeof(deque));
-    d->dados = (int *)malloc(sizeof(int) * capacidade);
+    deque *d = malloc(sizeof(deque));
+    d->dados = malloc(sizeof(int) * capacidade);
     d->capacidade = capacidade;
     d->tamanho = 0;
     d->inicio = 0;
