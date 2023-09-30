@@ -25,11 +25,23 @@ typedef struct no
     struct no *prox;
 } no;
 
+typedef struct PACIENTE
+{
+    int paciente;
+    struct no *prox;
+} PACIENTE;
+
 typedef struct fila
 {
     no *inicio;
     no *fim;
 } fila;
+
+typedef struct FILA_PACIENTES
+{
+    PACIENTE *inicio;
+    PACIENTE *fim;
+} FILA_PACIENTES;
 
 typedef struct pilha
 {
@@ -91,6 +103,44 @@ int verificar_fila(fila *f)
     }
 }
 
+void criar_FILA_PACIENTES(FILA_PACIENTES *Fila)
+{
+    Fila->fim = NULL;
+    Fila->inicio = NULL;
+}
+
+int verificar_FILA_PACIENTES(FILA_PACIENTES *Fila)
+{
+    if (Fila->inicio == NULL)
+    {
+        return 0;//fila vazia
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+int enfileirar(FILA_PACIENTES *Fila, PACIENTE *Paciente)
+{
+
+    PACIENTE *novo = malloc(sizeof(PACIENTE));
+
+    novo->paciente = Paciente;
+    novo->prox = NULL;
+
+    if (verificar_FILA_PACIENTES(Fila) == 0)
+    {
+        Fila->fim = novo;
+        Fila->inicio = novo;
+    }
+    else
+    {
+        Fila->fim->prox = novo;
+        Fila->fim = novo;
+    }
+}
+
 void inserir_fila(fila *f, int vlr)
 {
     no *novo = malloc(sizeof(no));
@@ -110,6 +160,23 @@ void inserir_fila(fila *f, int vlr)
     }
 }
 
+int desenfileirar(FILA_PACIENTES *Fila)
+{
+    int x;
+    PACIENTE *aux = malloc(sizeof(PACIENTE));
+
+    x = Fila->inicio->paciente;
+    aux = Fila->inicio;
+    Fila->inicio = aux->prox;
+
+    if (Fila->inicio == NULL)
+    {
+        Fila->fim = NULL;
+    }
+    free(aux);
+    return x;
+}
+
 int remover(fila *f)
 {
     int x;
@@ -126,6 +193,25 @@ int remover(fila *f)
     free(aux);
     return x;
 }
+
+void mostra_FILA_PACIENTES(FILA_PACIENTES *Fila)
+{
+    if (verificar_FILA_PACIENTES(Fila) == 0)
+    {
+        printf("Fila vazia!");
+    }
+    else
+    {
+        PACIENTE *aux = Fila->inicio;
+
+        while (aux != NULL)
+        {
+            printf("| %d", aux->paciente);
+            aux = aux->prox;
+        }
+    }
+}
+
 void mostra_fila(fila *f)
 {
     if (verificar_fila(f) == 0)
@@ -350,7 +436,7 @@ int menu_q1(int voltar)
             inserir_fila(f1, valor);
             break;
         case 2:
-            printf("2_Desemfileirando e empilhando\n");
+            printf("2_Desenfileirando e empilhando\n");
 
             fila_pilha(f1, p1);
             mostra_pilha(p1);
@@ -508,6 +594,54 @@ int menu_q3(int voltar)
 
 int menu_q4(int voltar)
 {
+    FILA_PACIENTES *Fila1 = malloc(sizeof(FILA_PACIENTES));
+    criar_FILA_PACIENTES(Fila1);
+
+    int op;           // operacional
+    int retorno;      // senha desenfileirada
+
+    do
+    {
+        system("cls");
+        printf("\n");
+        mostra_FILA_PACIENTES(Fila1);
+        printf("\n");
+        printf("\n============== Questão 4 ==============\n");
+        printf("\n0_ Voltar");
+        printf("\n1_ Enfileirar pacientes");
+        printf("\n2_ Desenfileirar pacientes");
+        printf("\n\n");
+
+        scanf("%d", &op);
+
+        switch (op)
+        {
+        case 0:
+            voltar = 1;
+            break;
+        case 1:
+            printf("\n1_ Enfileirando pacientes");
+
+            PACIENTE *novo_paciente = malloc(sizeof(PACIENTE));
+            printf("Digite a senha do paciente: ");
+            scanf("%d", &(novo_paciente->paciente));
+
+            enfileirar(Fila1, novo_paciente);
+            break;
+        case 2:
+            printf("\n2_ Desenfileirar pacientes");
+
+            retorno = desenfileirar(Fila1);
+
+            printf("\n%d\n", retorno);
+            system("pause");
+            break;
+
+        default:
+            break;
+        }
+    } while (op != 0);
+    return voltar;
 }
 
 int menu_principal()
@@ -522,6 +656,7 @@ int menu_principal()
         printf("1_ Questão 1\n");
         printf("2_ Questão 2\n");
         printf("3_ Questão 3\n");
+        printf("4_ Questão 4\n");
         printf("\nQual questão quer acessar?\n");
 
         scanf("%d", &questao);
