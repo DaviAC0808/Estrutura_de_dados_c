@@ -620,7 +620,7 @@ int menu_q4(int voltar)
             voltar = 1;
             break;
         case 1:
-            printf("\n1_ Enfileirando pacientes");
+            printf("\n1_ Enfileirando pacientes\n");
 
             PACIENTE *novo_paciente = malloc(sizeof(PACIENTE));
             printf("Digite a senha do paciente: ");
