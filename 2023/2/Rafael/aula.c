@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <locale.h>
 
-struct ponto
+typedef struct produto
 {
-    int x;
-    int y;
-};
+    float x;
+    int qnt;
+}produto;
 
-struct reta
+typedef struct estoque
 {
     struct ponto inicio;
     struct ponto fim;
-};
+}estoque;
 
 int main()
 {
