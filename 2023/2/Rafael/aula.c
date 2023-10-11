@@ -7,7 +7,11 @@
 // 1) Crie um programa em C que faça o seguinte:
 
 // a) Crie  um vetor de tamanho 20 de inteiros
-int vetor[20];
+void criandoVetor(int vetor[], int tamanho)
+{
+    printf("Qual o tamanho do vetor?");
+    scanf("%d", &tamanho);
+}
 
 // b) Preencha os 10 primeiros valores do vetor com números digitados pelo usuário via teclado
 void preencherVetorTeclado(int vetor[], int tamanho)
@@ -15,24 +19,34 @@ void preencherVetorTeclado(int vetor[], int tamanho)
     for (int i = 0; i < tamanho; i++)
     {
         printf("Digite o valor da posição %d: ", i);
-        scanf("%d", &tamanho);
+        scanf("%d", &vetor[i]);
     }
 }
 
 // c) Preencha os 10 últimos valores do vetor com números aleatórios entre 1 e 100
-void preenchaVetorAleatorio(int vetor[], int tamanho, int min, int max){
-    
-    srand(time(NULL));//inicializa um numero aleatorio a partir da hora do usuário
+void preenchaVetorAleatorio(int vetor[], int tamanho, int min, int max)
+{
+    printf("Qual o valor mínimo? ");
+    scanf("%d", &min);
+
+    printf("Qual o valor máximo? ");
+    scanf("%d", &max);
+
+    srand(time(NULL)); // inicializa um numero aleatorio a partir da hora do usuário
     for (int i = 0; i < tamanho; i++)
     {
-        //vetor[tamanho] = rand() %100; // divide e recebe o resto (menos q 100)
-        vetor[tamanho] = (rand() %(max - min + 1)) + min;
+        // vetor[tamanho] = rand() %100; // divide e recebe o resto (menos q 100)
+        vetor[tamanho] = (rand() % (max - min + 1)) + min;
     }
 }
 
 // d) Mostre o vetor inteiro na tela
 
-void mostrarVetor(int vetor[], int tamanho){
+void mostrarVetor(int vetor[], int tamanho)
+{
+
+    printf("Qual o tamanho do vetor?");
+    scanf("%d", &tamanho);
 
     for (int i = 0; i < tamanho; i++)
     {
@@ -41,6 +55,18 @@ void mostrarVetor(int vetor[], int tamanho){
 }
 
 // e) Mostre o vetor de trás para frente na tela
+
+void mostrarInvVetor(int vetor[], int tamanho)
+{
+
+    printf("Qual o tamanho do vetor?");
+    scanf("%d", &tamanho);
+
+    for (int i = tamanho; i > tamanho; i--)
+    {
+        printf("Vetor na posição %d é %d", tamanho, vetor);
+    }
+}
 
 // f) Calcule e mostre a média dos valores do vetor
 
@@ -65,11 +91,56 @@ void mostrarVetor(int vetor[], int tamanho){
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    int valores[20];
+    int tamanho;
+    int min;
+    int max;
+    int op;
+    int valores[tamanho]; // a
 
-    /*a)*/preencherVetorTeclado(valores, 10);
-    /*b)*/preenchaVetorAleatorio(&valores[10], 10, 1, 100);
+    do
+    {
+        printf("\n======== MENU ========\n");
+        printf("0_Sair\n");
+        printf("1_a\n");
+        printf("2_b\n");
+        printf("3_c\n");
+        printf("4_d\n");
+        printf("5_e\n");
+        printf("6_f\n");
+        printf("7_g\n");
 
+        scanf("%d", &op);
+
+        switch (op)
+        {
+        case 1:
+            /*a)*/ criandoVetor(valores, tamanho);
+            break;
+
+        case 2:
+            /*b)*/ preencherVetorTeclado(valores, 10);
+            break;
+
+        case 3:
+            /*c)*/ preenchaVetorAleatorio(valores, tamanho, min, max);
+            break;
+
+        case 4:
+            /*d)*/ mostrarVetor(valores, tamanho);
+            break;
+
+        case 5:
+            /*a)*/ preencherVetorTeclado(valores, 10);
+            break;
+
+        case 6:
+            /*a)*/ preencherVetorTeclado(valores, 10);
+            break;
+
+        default:
+            break;
+        }
+    }while (op != 0);
 
     printf("\n\n");
     // scanf("%", );
