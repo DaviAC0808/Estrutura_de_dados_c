@@ -66,7 +66,7 @@ int desempilhar(pilha *p)
 
 void inverter(pilha *pa, pilha *pb)
 {
-    while (!verificar(pa))
+    while (!verificar(pa))  
     {
         int valor = desempilhar(pa);
         empilhar(pb, valor);
