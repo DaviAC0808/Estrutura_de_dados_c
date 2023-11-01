@@ -37,7 +37,7 @@ int adicionaLista(lista *l, int vlr)
     novo->ant = NULL;
     novo->Vlr = vlr;
 
-    if (verificaLista(l) == 1)
+    if (verificaLista(l) == 0)
     {
         l->inicio = novo;
         return 0;
@@ -55,7 +55,7 @@ int removeLista(lista *l)
 
     aux->ant = NULL;
 
-    if (verificaLista(l) == 1)
+    if (verificaLista(l) == 0)
     {
         retorno = l->inicio->Vlr;
         aux = l->inicio;
@@ -72,12 +72,11 @@ int removeLista(lista *l)
 
 void mostrarLista(lista *l)
 {
-    if (verificaLista(l) != 1)
+    if (verificaLista(l) == 0)
     {
         no *aux = malloc(sizeof(no));
         aux = l->inicio;
 
-        printf("Lista");
         while (aux != NULL)
         {
             printf(" %d", aux->Vlr);
@@ -96,7 +95,7 @@ int main()
     int valor;
     int op;
 
-    lista *l1;
+    lista *l1 = malloc(sizeof(lista));
     criandoLista(l1);
 
     do
@@ -116,7 +115,7 @@ int main()
         case 1:
             printf("\nQual o valor deseja adicionar?\n");
             scanf("%d", &valor);
-            mostrarLista(&l1);
+            mostrarLista(l1);
 
             break;
         case 2:

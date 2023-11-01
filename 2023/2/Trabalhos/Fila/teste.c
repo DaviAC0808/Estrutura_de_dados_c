@@ -113,7 +113,7 @@ int verificar_FILA_PACIENTES(FILA_PACIENTES *Fila)
 {
     if (Fila->inicio == NULL)
     {
-        return 0;//fila vazia
+        return 0; // fila vazia
     }
     else
     {
@@ -597,8 +597,8 @@ int menu_q4(int voltar)
     FILA_PACIENTES *Fila1 = malloc(sizeof(FILA_PACIENTES));
     criar_FILA_PACIENTES(Fila1);
 
-    int op;           // operacional
-    int retorno;      // senha desenfileirada
+    int op;      // operacional
+    int retorno; // senha desenfileirada
 
     do
     {
