@@ -2,11 +2,27 @@
 #include <stdlib.h>
 #include <locale.h>
 
-    struct no
-    {
-        /* data */
-    };
-    
+typedef struct dados
+{
+    char nome;
+    int matricula;
+    float cpf[11];
+
+}dados;
+
+typedef struct no
+{
+    dados *Funcionario;
+    struct no *prox;
+}no;
+
+typedef struct Fila
+{
+    no *inicio;
+    no *fim;
+}fila;
+
+
 
 int main()
 {
@@ -14,5 +30,5 @@ int main()
     int;
 
     printf("\n\n");
-    //scanf("%", );
+    // scanf("%", );
 }
