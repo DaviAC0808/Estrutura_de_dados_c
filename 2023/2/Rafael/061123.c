@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <locale.h>
 
+    struct no
+    {
+        /* data */
+    };
     
 
 int main()
