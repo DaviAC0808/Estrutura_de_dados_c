@@ -623,7 +623,7 @@ int menu_q4(int voltar)
             printf("\n1_ Enfileirando pacientes\n");
 
             PACIENTE *novo_paciente = malloc(sizeof(PACIENTE));
-            printf("Digite a senha do paciente: ");
+            printf("Qualo nivel de prioridade do paciente: (1 - 5)");
             scanf("%d", &(novo_paciente->paciente));
 
             enfileirar(Fila1, novo_paciente);
