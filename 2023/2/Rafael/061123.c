@@ -33,7 +33,7 @@ int verifificarFila(fila *f)
     if (f->inicio == NULL)
     {
         f->fim = NULL;
-        return 0;
+        return 0; // fila vazia
     }
     else
     {
@@ -41,43 +41,61 @@ int verifificarFila(fila *f)
     }
 }
 
-void enfileirar(fila *f){
-    
+void enfileirar(fila *f, dados *func)
+{
+    no *novo = malloc(sizeof(no));
+    novo->Funcionario = func;
+    novo->prox = NULL;
+    if (verifificarFila(f) == 0)
+    {
+
+        f->inicio = novo;
+        f->fim = novo;
+    }
+    else
+    {
+        f->fim->prox = novo;
+        f->fim = novo;
+    }
 }
 
-void menu(){
+int desenfileirarFila(fila *f){
+    dados *x;
+
+}
+
+void menu()
+{
     int op;
 
     do
     {
         system("cls");
-        printf("\n========= MENU =========\n");    
+        printf("\n========= MENU =========\n");
         printf("0_ Sair");
         printf("1_ Adicionar ID");
         printf("2_ Destruir ID");
         printf("3_ Procurar ID");
-        
+
         scanf("%d", &op);
 
         switch (op)
         {
         case 1:
-            
+            /*Code*/
             break;
-        
+
         default:
             break;
         }
-        
 
     } while (op != 0);
-    
 }
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    
+
     menu();
 
     printf("\n\n");
